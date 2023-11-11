@@ -1,0 +1,41 @@
+body{
+  margin: 0;
+  background-color: #0F1C2E;
+}
+.header{
+  display: flex;
+  height: auto;
+  background-color: #0F1C2E;
+  color: white;
+  border: white 2px solid;
+}
+
+.tabMenu{
+  position: relative;
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  display: flex;
+}
+
+.tabItem{
+  height: 100%;
+  background-color: #4d648d;
+  color: white;
+  font-family: Ebrima;
+  font-size: 25px;
+  border: transparent 2px solid;
+  border-radius: 20px;
+}
+
+.tabItem:hover{
+  background-color: #e0e0e0;
+  color: #0F1C2E;
+}
+
+.mainContainer{
+  height: 100vh;
+  background-color: #0F1C2E;
+  border: white 2px solid;
+}
