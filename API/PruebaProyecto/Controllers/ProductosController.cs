@@ -18,7 +18,7 @@ namespace PruebaProyecto.Controllers
 
 
         //  METODO PARA LEER TODOS LOS PRODUCTOS DE LA BASE DE DATOS
-        [HttpGet]
+        [HttpGet("Obtener")]
         public IActionResult Get()
         {
             try
@@ -41,7 +41,7 @@ namespace PruebaProyecto.Controllers
 
         // METODO PARA LEER LOS PRODUCTOS SEGUN SU ID
 
-        [HttpGet("{id}")]
+        [HttpGet("Buscar")]
         public IActionResult Get(int id)
         {
             try
@@ -62,7 +62,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA CREAR PRODUCTOS
 
-        [HttpPost]
+        [HttpPost("Crear")]
         public IActionResult Post(Productos model)
         {
             try
@@ -79,7 +79,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA ACTUALIZAR PRODUCTOS
 
-        [HttpPut]
+        [HttpPut("Editar")]
 
         public IActionResult Put(Productos model)
         {
@@ -119,7 +119,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA ELIMINAR UN PRODUCTO
 
-        [HttpDelete]
+        [HttpDelete("Eliminar")]
 
         public IActionResult Delete(int id)
         {

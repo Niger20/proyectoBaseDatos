@@ -21,7 +21,7 @@ public class CuartosFriosController : Controller
 
 
         //  METODO PARA LEER TODOS LOS CUARTOS DE LA BASE DE DATOS
-        [HttpGet]
+        [HttpGet("Obtener")]
         public IActionResult Get()
         {
             try
@@ -53,7 +53,7 @@ public class CuartosFriosController : Controller
 
         // METODO PARA LEER LOS CUARTOS SEGUN SU ID
 
-        [HttpGet("{id}")]
+        [HttpGet("Buscar")]
         public IActionResult Get(int id)
         {
             try
@@ -74,7 +74,7 @@ public class CuartosFriosController : Controller
 
         //METODO PARA CREAR CuartosFrios
 
-        [HttpPost]
+        [HttpPost("Crear")]
         public IActionResult Post(CuartosFrios model)
         {
             try
@@ -91,7 +91,7 @@ public class CuartosFriosController : Controller
 
         //METODO PARA ACTUALIZAR Cuartos
 
-        [HttpPut]
+        [HttpPut("Editar")]
 
         public IActionResult Put(CuartosFrios model)
         {
@@ -130,7 +130,7 @@ public class CuartosFriosController : Controller
 
         //METODO PARA ELIMINAR UN EMPLEADO
 
-        [HttpDelete]
+        [HttpDelete("Eliminar")]
 
         public IActionResult Delete(int id)
         {

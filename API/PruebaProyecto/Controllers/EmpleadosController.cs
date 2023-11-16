@@ -19,7 +19,7 @@ namespace PruebaProyecto.Controllers
 
 
         //  METODO PARA LEER TODOS LOS EMPLEADOS DE LA BASE DE DATOS
-        [HttpGet]
+        [HttpGet("Obtener")]
         public IActionResult Get()
         {
             try
@@ -42,7 +42,7 @@ namespace PruebaProyecto.Controllers
 
         // METODO PARA LEER LOS EMPLEADOS SEGUN SU ID
 
-        [HttpGet("{id}")]
+        [HttpGet("Buscar")]
         public IActionResult Get(int id)
         {
             try
@@ -63,7 +63,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA CREAR Empleados
 
-        [HttpPost]
+        [HttpPost("Crear")]
         public IActionResult Post(Empleados model)
         {
             try
@@ -80,7 +80,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA ACTUALIZAR Empleados
 
-        [HttpPut]
+        [HttpPut("Editar")]
 
         public IActionResult Put(Empleados model)
         {
@@ -123,7 +123,7 @@ namespace PruebaProyecto.Controllers
 
         //METODO PARA ELIMINAR UN EMPLEADO
 
-        [HttpDelete]
+        [HttpDelete("Eliminar")]
 
         public IActionResult Delete(int id)
         {
