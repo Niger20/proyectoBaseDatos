@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PruebaProyecto.Controllers;
 using PruebaProyecto.Models;
 
 
@@ -20,6 +21,13 @@ namespace PruebaProyecto.DAL
         public DbSet<Proveedores> Proveedores { get; set; }
         
         public DbSet<Compras> Compras { get; set; }
+        
+        public DbSet<Usuarios> Usuarios { get; set; }
+        
+        public DbSet<Ventas> Ventas { get; set; }
+        
+        public DbSet<VistaVentas> VistaVentas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +40,13 @@ namespace PruebaProyecto.DAL
 
             modelBuilder.Entity<Proveedores>().HasKey(pro => pro.IdProveedor);
             modelBuilder.Entity<Compras>().HasKey(com => com.IdCompra);
-            
+
+            modelBuilder.Entity<Usuarios>().HasKey(u => u.Username);
+
+            modelBuilder.Entity<Ventas>().HasKey(v => v.IdVenta);
+
+            modelBuilder.Entity<VistaVentas>().HasNoKey();
+
 
         }
     }
