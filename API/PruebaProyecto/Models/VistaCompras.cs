@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PruebaProyecto.Models;
 
-public class VistaVentas
+public class VistaCompras
 {
-    public int IdVenta { get; set; }
-    public string NombreCliente { get; set;  }
+    public int IdCompra { get; set; }
+    public string NombreProveedor { get; set;  }
     public string ProductoDescripcion { get; set;  }
     public decimal Precio { get; set;  }
     public DateTime Fecha { get; set;  }

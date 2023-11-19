@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using System.Runtime.InteropServices.JavaScript;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Data.SqlClient;
 
 namespace PruebaProyecto.Controllers;
@@ -10,11 +11,11 @@ using PruebaProyecto.Models;
 [Route("api/[controller]")]
 [ApiController]
 
-public class VistaVentasController : ControllerBase
+public class VistaComprasController : ControllerBase
 {
     private readonly MyDBcontext _context;
 
-    public VistaVentasController(MyDBcontext context)
+    public VistaComprasController(MyDBcontext context)
     {
         _context = context;
     }
@@ -22,7 +23,7 @@ public class VistaVentasController : ControllerBase
     [HttpGet]
     public IActionResult GetVista()
     {
-        var vista = new List<VistaVentas>();
+        var vista = new List<VistaCompras>();
 
         try
         {
@@ -30,15 +31,15 @@ public class VistaVentasController : ControllerBase
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("SELECT * FROM VistaVentasConCliente", connection))
+                using (var command = new SqlCommand("SELECT * FROM VistaComprasConProveedor", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var vistaResult = new VistaVentas()
+                        var vistaResult = new VistaCompras()
                         {
-                            IdVenta = reader.GetInt32(reader.GetOrdinal("IdVenta")),
-                            NombreCliente = reader.GetString(reader.GetOrdinal("NombreCliente")),
+                            IdCompra = reader.GetInt32(reader.GetOrdinal("IdCompra")),
+                            NombreProveedor = reader.GetString(reader.GetOrdinal("NombreProveedor")),
                             ProductoDescripcion = reader.GetString(reader.GetOrdinal("ProductoDescripcion")),
                             Precio = reader.GetDecimal(reader.GetOrdinal("Precio")),
                             Fecha = reader.GetDateTime(reader.GetOrdinal("Fecha")),
@@ -61,9 +62,9 @@ public class VistaVentasController : ControllerBase
     }
     
     [HttpPost("Filtrar")]
-    public IActionResult GetVistaFiltrada(string fechaInicio, string fechaFinal)
+    public IActionResult GetVistaFiltrada(DateTime fechaInicio, DateTime fechaFinal)
     {
-        var vista = new List<VistaVentas>();
+        var vista = new List<VistaCompras>();
 
         try
         {
@@ -71,15 +72,15 @@ public class VistaVentasController : ControllerBase
             {
                 connection.Open();
 
-                using (var command = new SqlCommand($"SELECT * FROM VistaVentasConCliente WHERE Fecha BETWEEN '{fechaInicio}' AND '{fechaFinal}'", connection))
+                using (var command = new SqlCommand($"SELECT * FROM VistaComprasConProveedor WHERE Fecha BETWEEN '{fechaInicio}' AND '{fechaFinal}'", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var vistaResult = new VistaVentas()
+                        var vistaResult = new VistaCompras()
                         {
-                            IdVenta = reader.GetInt32(reader.GetOrdinal("IdVenta")),
-                            NombreCliente = reader.GetString(reader.GetOrdinal("NombreCliente")),
+                            IdCompra = reader.GetInt32(reader.GetOrdinal("IdCompra")),
+                            NombreProveedor = reader.GetString(reader.GetOrdinal("NombreProveedor")),
                             ProductoDescripcion = reader.GetString(reader.GetOrdinal("ProductoDescripcion")),
                             Precio = reader.GetDecimal(reader.GetOrdinal("Precio")),
                             Fecha = reader.GetDateTime(reader.GetOrdinal("Fecha")),

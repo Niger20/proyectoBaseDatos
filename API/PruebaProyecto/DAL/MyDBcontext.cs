@@ -27,6 +27,8 @@ namespace PruebaProyecto.DAL
         public DbSet<Ventas> Ventas { get; set; }
         
         public DbSet<VistaVentas> VistaVentas { get; set; }
+        
+        public DbSet<VistaCompras> VistaCompras { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,6 +48,9 @@ namespace PruebaProyecto.DAL
             modelBuilder.Entity<Ventas>().HasKey(v => v.IdVenta);
 
             modelBuilder.Entity<VistaVentas>().HasNoKey();
+            
+            modelBuilder.Entity<VistaCompras>().HasNoKey();
+            
 
 
         }
