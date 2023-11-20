@@ -26,7 +26,7 @@ public class VistaVentasController : ControllerBase
 
         try
         {
-            using (var connection = new SqlConnection("server = LAPTOP-34RRR9F7 ; database = proyectoBaseDatos; integrated security = true; TrustServerCertificate = true")) // Reemplaza con tu cadena de conexión
+            using (var connection = new SqlConnection("server = LAPTOP-RH59HPEB ; database = proyectoBaseDatos; integrated security = true; TrustServerCertificate = true")) // Reemplaza con tu cadena de conexión
             {
                 connection.Open();
 
@@ -67,7 +67,7 @@ public class VistaVentasController : ControllerBase
 
         try
         {
-            using (var connection = new SqlConnection("server = LAPTOP-34RRR9F7 ; database = proyectoBaseDatos; integrated security = true; TrustServerCertificate = true")) // Reemplaza con tu cadena de conexión
+            using (var connection = new SqlConnection("server = LAPTOP-RH59HPEB ; database = proyectoBaseDatos; integrated security = true; TrustServerCertificate = true")) // Reemplaza con tu cadena de conexión
             {
                 connection.Open();
 
