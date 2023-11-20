@@ -15,6 +15,6 @@ public class Entradas
     [Required] public int IdEmpleado { get; set; }
     [Required] public DateTime Fecha { get; set; }
     [Required] public int Cantidad { get; set; }
-    [Required] public string tipo { get; set; }
+    [Required] public string Tipo { get; set; }
 
 }
