@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+</head>
+<body>
+<div class="container">
+  <div class="column"></div>
+  <div class="column">
+    <img src="../../assets/logo.jpg" alt="" class="logo">
+    <form>
+
+      <div>
+        <input
+          type="text" class="UserName" name="UserName" id="NombreUsuario"
+          aria-describedby="helpId" placeholder="Nombre de Usuario" [(ngModel)]="modeloUsuario.username">
+      </div>
+
+      <div>
+        <input
+          type="password" class="password" name="password" id="ContrasenaUsuario"
+          aria-describedby="helpId" placeholder="Password" [(ngModel)]="modeloUsuario.password">
+      </div>
+
+      <div>
+        <button class="loginButton" (click)="loginUsuario()">INICIAR SESION</button>
+      </div>
+
+
+    </form>
+  </div>
+  <div class="column"></div>
+</div>
+
+</body>
+</html>

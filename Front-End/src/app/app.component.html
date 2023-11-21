@@ -9,43 +9,20 @@
 </head>
 <body>
 
-<div class="header">
-
-  <div class="tabMenu">
-    <button class="tabItem"> Inicio </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Gestionar Salidas </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Gestionar Entradas </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Ventas </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Compras </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Proveedores </button>
-  </div>
-
-  <div class="tabMenu">
-    <button class="tabItem"> Clientes </button>
-  </div>
-
+<div *ngIf="loginStatus == false">
+  <app-login></app-login>
+</div>
+<div *ngIf="loginStatus == true && userRol === 'Admin'">
+  <app-salidas></app-salidas>
+  <h2>El rol de usuario es admin</h2>
+</div>
+<div *ngIf="loginStatus == true && userRol === 'Bodeguero'">
+  <app-entradas></app-entradas>
+  <button (click)="mostrarRol()"></button>
+  <h2>el rol de usuario es bodeguero</h2>
 </div>
 
-<div class="">
 
-  <app-inicio></app-inicio>
-
-</div>
 
 </body>
 </html>

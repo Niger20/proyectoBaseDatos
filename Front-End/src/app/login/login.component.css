@@ -1,0 +1,48 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  margin-top: 25px;
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+}
+
+.UserName{
+  margin-top: 50px;
+  width: 75%;
+  height: 30px;
+  border: 1px solid darkred;
+  border-radius: 10px;
+}
+
+.password{
+  margin-top: 50px;
+  width: 75%;
+  height: 30px;
+  border: 1px solid darkred;
+  border-radius: 10px;
+}
+
+.loginButton{
+  margin-top: 50px;
+  width: 150px;
+  height: 30px;
+  border: darkred solid 1px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.loginButton:hover{
+  background-color: darkred;
+  color: white;
+}
+
+.logo{
+  width: 50%;
+}

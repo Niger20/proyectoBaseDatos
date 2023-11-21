@@ -52,7 +52,7 @@ public class UsuariosController : ControllerBase
 
             if (usuarios == null)
             {
-                return NotFound($"No hay usuarios con nombre de usuario: {model.Username}");
+                return NotFound($"USUARIO O CONTRASENA INCORRECTA");
             }
             else
             {
