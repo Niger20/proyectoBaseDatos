@@ -2,8 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {LoginComponent} from "./login/login.component"
-import {EntradasComponent} from "./entradas/entradas.component";
-import {SalidasComponent} from "./salidas/salidas.component";
+import {InicioAdminComponent} from "./inicio-admin/inicio-admin.component";
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {SharedServiceService} from "./services/shared-service.service";
@@ -11,7 +10,7 @@ import {SharedServiceService} from "./services/shared-service.service";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent, HttpClientModule, SalidasComponent, EntradasComponent],
+  imports: [CommonModule, RouterOutlet, LoginComponent, HttpClientModule, InicioAdminComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

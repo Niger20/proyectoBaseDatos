@@ -9,17 +9,12 @@
 </head>
 <body>
 
-<div *ngIf="loginStatus == false">
+<div *ngIf="loginStatus == true">
   <app-login></app-login>
 </div>
-<div *ngIf="loginStatus == true && userRol === 'Admin'">
-  <app-salidas></app-salidas>
-  <h2>El rol de usuario es admin</h2>
-</div>
-<div *ngIf="loginStatus == true && userRol === 'Bodeguero'">
-  <app-entradas></app-entradas>
-  <button (click)="mostrarRol()"></button>
-  <h2>el rol de usuario es bodeguero</h2>
+
+<div>
+  <app-inicio-admin></app-inicio-admin>
 </div>
 
 
