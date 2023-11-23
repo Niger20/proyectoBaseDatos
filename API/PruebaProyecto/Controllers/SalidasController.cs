@@ -32,8 +32,15 @@ namespace PruebaProyecto.Controllers;
                 var salidas = _context.Salidas.ToList();
 
                 if (salidas.Count == 0) return NotFound("No hay salidas Registradas");
+                
+                var response = new 
+                {
+                    Code = 200,
+                    Message = "Lista Salidas",
+                    Data = salidas
+                };
 
-                return Ok(salidas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -68,11 +75,11 @@ namespace PruebaProyecto.Controllers;
             {
                 _context.Add(model);
                 _context.SaveChanges();
-                return Ok("salida registrada Correctamente");
+                return Ok(new { message = "salida registrada Correctamente" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
 

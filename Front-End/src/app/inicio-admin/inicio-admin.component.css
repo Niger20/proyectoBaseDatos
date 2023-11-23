@@ -1,18 +1,24 @@
+.main{
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+}
 .sidebar{
   width: 32px;
-  height: 95vh;
+  height: 97vh;
   border: darkred solid 1px;
   overflow-x: clip;
   transition: all .7s;
 }
 
 .sidebar:hover{
-  width: 160px;
+  width: 270px;
 }
 
 .welcome{
-  text-align: center;
-  font-size: 15px;
+
+  display: flex;
+  align-items: center;
+
 }
 
 .menuButton{
@@ -47,6 +53,24 @@
   align-self: center;
   text-align: center;
   font-size: 12px;
+}
+
+.container{
+  width: 100%;
+  height: 97vh;
+  border: #8B0000 solid 1px;
+  transition: all .7s;
+  overflow: auto;
+}
+
+.bienvenida{
+  color: #8B0000;
+  flex: 1;
+  margin-left: 35px;
+  margin-right: 35px;
+  align-self: center;
+  text-align: center;
+  font-size: 15px;
 }
 
 

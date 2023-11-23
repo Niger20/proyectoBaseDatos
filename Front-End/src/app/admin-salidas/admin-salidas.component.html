@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="separator">
+  </div>
+
+  <div class="container">
+
+    <div class="formulario">
+
+      <div class="header">
+
+        <h2>Salidas</h2>
+
+      </div>
+
+      <div class="form">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto"  [(ngModel)]="modeloSalida.idProducto">
+        <input class="inputNormal" type="number" placeholder="Codigo Empleado" [(ngModel)]="modeloSalida.idEmpleado">
+        <input class="inputNormal" type="number" placeholder="Cuarto" [(ngModel)]="modeloSalida.idCuarto">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloSalida.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloSalida.cantidad">
+        <input class="inputNormal" type="number" placeholder="Venta Asociada">
+
+        <label for="tipo"> Tipo: </label>
+        <select name="tipo" id="tipo" class="comboBox" [(ngModel)]="modeloSalida.tipo">
+          <option value="interna">Interna</option>
+          <option value="externa">Externa</option>
+        </select>
+
+
+        <div class="buttonContainer">
+          <button class="buttonForm confirmar" (click)="addSalida()">CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="tabla">
+
+      <table>
+        <tr class="columnTable">
+          <th>Codigo Salida</th>
+          <th>Codigo Producto</th>
+          <th>Codigo Empleado</th>
+          <th>Cuarto</th>
+          <th>Fecha</th>
+          <th>Cantidad</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idSalida }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.idEmpleado }}</td>
+          <td>{{ item.idCuarto }}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>
+            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" id="{{item.idSalida}}"></button>
+            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" id="{{item.idSalida}}"></button>
+          </td>
+
+        </tr>
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</body>
+</html>
