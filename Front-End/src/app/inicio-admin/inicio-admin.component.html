@@ -19,23 +19,37 @@
     </div>
 
 
-    <button class="menuButton"><img src="assets/casa-en-blanco.png" alt="" class="menuButtonIcon"> <p class="textButton">INICIO</p> </button>
-    <button class="menuButton"><img src="assets/persona-munequita.png" alt="" class="menuButtonIcon"> <p class="textButton">SALIDAS</p> </button>
-    <button class="menuButton"><img src="assets/carga-de-camiones.png" alt="" class="menuButtonIcon"> <p class="textButton">ENTRADAS</p> </button>
-    <button class="menuButton"><img src="assets/dolar-de-caja.png" alt="" class="menuButtonIcon"> <p class="textButton">VENTAS</p> </button>
-    <button class="menuButton"><img src="assets/comprobacion-del-carrito-de-la-compra.png" alt="" class="menuButtonIcon"> <p class="textButton">COMPRAS</p> </button>
-    <button class="menuButton"><img src="assets/gente-de-la-foto.png" alt="" class="menuButtonIcon"> <p class="textButton">CLIENTES</p> </button>
-    <button class="menuButton"><img src="assets/id-insignia.png" alt="" class="menuButtonIcon"> <p class="textButton">EMPLEADOS</p> </button>
-    <button class="menuButton"><img src="assets/signo-de-persona.png" alt="" class="menuButtonIcon"> <p class="textButton">PROVEEDORES</p> </button>
-    <button class="menuButton"><img src="assets/agregar-usuario%20(3).png" alt="" class="menuButtonIcon"> <p class="textButton">USUARIOS</p> </button>
-    <button class="menuButton"><img src="assets/archivos-medicos.png" alt="" class="menuButtonIcon"> <p class="textButton">REPORTES</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('inicio')"><img src="assets/casa-en-blanco.png" alt="" class="menuButtonIcon"> <p class="textButton">INICIO</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('salidas')"><img src="assets/persona-munequita.png" alt="" class="menuButtonIcon"> <p class="textButton">SALIDAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('entradas')"><img src="assets/carga-de-camiones.png" alt="" class="menuButtonIcon"> <p class="textButton">ENTRADAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('ventas')"><img src="assets/dolar-de-caja.png" alt="" class="menuButtonIcon"> <p class="textButton">VENTAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('compras')"><img src="assets/comprobacion-del-carrito-de-la-compra.png" alt="" class="menuButtonIcon"> <p class="textButton">COMPRAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('clientes')"><img src="assets/gente-de-la-foto.png" alt="" class="menuButtonIcon"> <p class="textButton">CLIENTES</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('empleados')"><img src="assets/id-insignia.png" alt="" class="menuButtonIcon"> <p class="textButton">EMPLEADOS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('proveedores')"><img src="assets/signo-de-persona.png" alt="" class="menuButtonIcon"> <p class="textButton">PROVEEDORES</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('usuarios')"><img src="assets/agregar-usuario%20(3).png" alt="" class="menuButtonIcon"> <p class="textButton">USUARIOS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('reportes')"><img src="assets/archivos-medicos.png" alt="" class="menuButtonIcon"> <p class="textButton">REPORTES</p> </button>
 
   </div>
 
   <div class="container">
-    <div>
-      <app-admin-salidas></app-admin-salidas>
+    <div *ngIf="pestanaActiva === 'clientes' "><app-admin-clientes></app-admin-clientes></div>
+    <div *ngIf="pestanaActiva ==='compras' "><app-admin-compras></app-admin-compras></div>
+    <div *ngIf="pestanaActiva === 'empleados'"><app-admin-empleados></app-admin-empleados></div>
+    <div *ngIf="pestanaActiva === 'entradas'"><app-admin-entradas></app-admin-entradas></div>
+    <div *ngIf="pestanaActiva === 'proveedores'">    <app-admin-proveedores></app-admin-proveedores></div>
+    <div *ngIf="pestanaActiva === 'reportes'"><app-admin-reportes></app-admin-reportes></div>
+    <div *ngIf="pestanaActiva === 'salidas'"><app-admin-salidas></app-admin-salidas></div>
+    <div *ngIf="pestanaActiva === 'usuarios'"><app-admin-usuarios></app-admin-usuarios></div>
+    <div *ngIf="pestanaActiva === 'ventas'"><app-admin-ventas></app-admin-ventas></div>
+    <div *ngIf="pestanaActiva === 'inicio'">
+      <h2>REPORTE CUARTOS</h2>
     </div>
+
+
+
+
+
   </div>
 
 </div>

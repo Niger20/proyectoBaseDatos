@@ -45,9 +45,15 @@ export class LoginComponent {
       },
       (error) => {
         // Maneja los errores de la solicitud
-        alert('Error: '+ error);
+        alert('USUARIO O CONTRASENA INCORRECTOS, INTENTE DE NUEVO');
+        this.limpiarModelo()
       }
     );
+  }
+
+  limpiarModelo(){
+    this.modeloUsuario.username = ""
+    this.modeloUsuario.password = ""
   }
 
 }
