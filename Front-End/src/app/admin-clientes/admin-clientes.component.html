@@ -25,17 +25,17 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Identidad" >
-        <input class="inputNormal" type="number" placeholder="Primer Nombre" >
-        <input class="inputNormal" type="number" placeholder="Segundo Nombre" >
-        <input class="inputNormal" type="number" placeholder="Primer Apellido" >
-        <input class="inputNormal" type="number" placeholder="Segundo Apellido" >
-        <input class="inputNormal" type="number" placeholder="Telefono" >
+        <input class="inputNormal" type="text" placeholder="Identidad" [(ngModel)]="modeloClientes.identidad">
+        <input class="inputNormal" type="text" placeholder="Primer Nombre" [(ngModel)]="modeloClientes.primerNombre">
+        <input class="inputNormal" type="text" placeholder="Segundo Nombre" [(ngModel)]="modeloClientes.segundoNombre">
+        <input class="inputNormal" type="text" placeholder="Primer Apellido" [(ngModel)]="modeloClientes.primerApellido">
+        <input class="inputNormal" type="text" placeholder="Segundo Apellido" [(ngModel)]="modeloClientes.segundoApellido">
+        <input class="inputNormal" type="text" placeholder="Telefono" [(ngModel)]="modeloClientes.telefono">
 
 
         <div class="buttonContainer">
-          <button class="buttonForm confirmar" >CONFIRMAR</button>
-          <button class="buttonForm limpiar" id="limpiar" >LIMPIAR</button>
+          <button class="buttonForm confirmar" (click)="addProducto()">CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
         </div>
 
       </div>
@@ -58,17 +58,17 @@
           <th>Telefono</th>
           <th>Acciones</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idCliente }}</td>
+          <td>{{ item.identidad }}</td>
+          <td>{{ item.primerNombre }}</td>
+          <td>{{ item.segundoNombre }}</td>
+          <td>{{ item.primerApellido }}</td>
+          <td>{{ item.segundoApellido }}</td>
+          <td>{{ item.telefono }}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
+            <button class="headerButton" (click)="cargarDatos(item)"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
+            <button class="headerButton" (click)="eliminarCliente(item.idCliente)"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
           </td>
 
         </tr>

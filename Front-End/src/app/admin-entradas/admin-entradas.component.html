@@ -25,23 +25,23 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Codigo Producto" >
-        <input class="inputNormal" type="number" placeholder="Codigo Empleado" >
-        <input class="inputNormal" type="number" placeholder="Cuarto" >
-        <input class="inputNormal" type="date" placeholder="Fecha" >
-        <input class="inputNormal" type="number" placeholder="Cantidad">
-        <input class="inputNormal" type="number" placeholder="Compra Asociada">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloEntradas.idProducto">
+        <input class="inputNormal" type="number" placeholder="Codigo Empleado" [(ngModel)]="modeloEntradas.idEmpleado">
+        <input class="inputNormal" type="number" placeholder="Cuarto" [(ngModel)]="modeloEntradas.idCuarto">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloEntradas.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloEntradas.cantidad">
+        <input class="inputNormal" type="number" placeholder="Compra/Salida Asociada" [(ngModel)]="modeloEntradaExterna.idCompra" [(ngModel)]="modeloMovimientoInterno.idSalida">
 
-        <label for="tipo"> Tipo: </label>
-        <select name="tipo" id="tipo" class="comboBox" >
+        <label for="tipo" > Tipo: </label>
+        <select name="tipo" id="tipo" class="comboBox" [(ngModel)]="modeloEntradas.tipo">
           <option value="interna">Interna</option>
           <option value="externa">Externa</option>
         </select>
 
 
         <div class="buttonContainer">
-          <button class="buttonForm confirmar" >CONFIRMAR</button>
-          <button class="buttonForm limpiar" id="limpiar" >LIMPIAR</button>
+          <button class="buttonForm confirmar" (click)="addSalida()">CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
         </div>
 
       </div>
@@ -64,19 +64,18 @@
           <th>Tipo</th>
           <th>Acciones</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idEntrada }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.idEmpleado }}</td>
+          <td>{{ item.idCuarto}}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad}}</td>
+          <td>{{ item.tipo}}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
+            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" (click) = "cargarDatos(item)"></button>
+            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" (click)="eliminarEntrada(item.idEntrada)"></button>
           </td>
-
         </tr>
       </table>
 

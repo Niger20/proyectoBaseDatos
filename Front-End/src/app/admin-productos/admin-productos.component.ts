@@ -4,16 +4,16 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-admin-empleados',
+  selector: 'app-admin-productos',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin-empleados.component.html',
-  styleUrl: './admin-empleados.component.css'
+  templateUrl: './admin-productos.component.html',
+  styleUrl: './admin-productos.component.css'
 })
-export class AdminEmpleadosComponent {
+export class AdminProductosComponent {
 
-  modeloEmpleados: Empleados =  new Empleados()
-  arregloDatos: Empleados [] = []
+  modeloProductos: Productos = new Productos()
+  arregloDatos: Productos [] = []
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -23,9 +23,9 @@ export class AdminEmpleadosComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/Empleados/Obtener';
+    const url = 'https://localhost:44308/api/Productos/Obtener';
 
-    this.http.get<EmpleadosResponse>(url).subscribe(
+    this.http.get<ProductosResponse>(url).subscribe(
       (response) => {
         if (Array.isArray(response.data)) {
           this.arregloDatos = response.data;
@@ -37,17 +37,17 @@ export class AdminEmpleadosComponent {
     );
   }
 
-  addEmpleado() {
-    if (this.modeloEmpleados.idEmpleado == 0){
-      this.postEmpleado()
+  addProducto() {
+    if (this.modeloProductos.idProducto == 0){
+      this.postProductos()
     }else{
-      this.editarEmpleado()
+      this.editarProductos()
     }
   }
 
-  editarEmpleado() {
-    const url = 'https://localhost:44308/api/Empleados/Editar'
-    this.http.put(url, this.modeloEmpleados).subscribe(response => {
+  editarProductos() {
+    const url = 'https://localhost:44308/api/Productos/Editar'
+    this.http.put(url, this.modeloProductos).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()
       this.limpiarModelo()
@@ -56,18 +56,18 @@ export class AdminEmpleadosComponent {
       alert('Error: ' + error);
     });
   }
-  postEmpleado() {
+  postProductos() {
 
     let url = ''
 
-    url = 'https://localhost:44308/api/Empleados/Crear'
+    url = 'https://localhost:44308/api/Productos/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
     // Realiza la solicitud POST
-    this.http.post(url, this.modeloEmpleados, { headers }).subscribe(
+    this.http.post(url, this.modeloProductos, { headers }).subscribe(
       (response) => {
         alert('Registro Exitoso');
 
@@ -83,9 +83,9 @@ export class AdminEmpleadosComponent {
     );
   }
 
-  eliminarEmpleado(id : number){
+  eliminarProducto(id : number){
 
-    const urlDelete = 'https://localhost:44308/api/Empleados/Eliminar';
+    const urlDelete = 'https://localhost:44308/api/Productos/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {
@@ -102,41 +102,36 @@ export class AdminEmpleadosComponent {
   }
 
   limpiarModelo(){
-    this.modeloEmpleados.idEmpleado = 0
-    this.modeloEmpleados.identidad = ""
-    this.modeloEmpleados.primerNombre = ""
-    this.modeloEmpleados.segundoNombre = ""
-    this.modeloEmpleados.primerApellido = ""
-    this.modeloEmpleados.segundoApellido = ""
+    this.modeloProductos.idProducto = 0
+    this.modeloProductos.cantidad = null
+    this.modeloProductos.descripcion = ""
+    this.modeloProductos.peso = null
+
   }
 
   cargarDatos(item : any){
-    this.modeloEmpleados = {
+    this.modeloProductos = {
 
-      idEmpleado : item.idEmpleado,
-      identidad : item.identidad,
-      primerNombre : item.primerNombre,
-      segundoNombre : item.segundoNombre,
-      primerApellido : item.primerApellido,
-      segundoApellido : item.segundoApellido,
+      idProducto : item.idProducto,
+      peso : item.peso,
+      cantidad : item.cantidad,
+      descripcion : item.descripcion,
 
     }
   }
 
-}
-
-class Empleados {
-  idEmpleado: number = 0
-  identidad: string = ""
-  primerNombre: string = ""
-  segundoNombre: string = ""
-  segundoApellido: string = ""
-  primerApellido: string = ""
 
 }
 
-class EmpleadosResponse{
+class ProductosResponse{
   code: string = "";
   message: string = ""
   data: string ="";
+}
+
+class Productos{
+  idProducto: number = 0
+  cantidad: number = 0
+  descripcion: string = ""
+  peso: number = null
 }

@@ -53,7 +53,7 @@ public class VistaVentasController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new {message = ex.Message});
             throw;
         }
 
@@ -94,7 +94,7 @@ public class VistaVentasController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new {message = ex.Message});
             throw;
         }
 

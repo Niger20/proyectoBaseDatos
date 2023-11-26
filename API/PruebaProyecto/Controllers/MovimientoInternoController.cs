@@ -18,7 +18,6 @@ public class MovimientoInternoController : ControllerBase
         _context = context;
     }
 
-
     //  METODO PARA LEER TODOS LOS EMPLEADOS DE LA BASE DE DATOS
     [HttpGet("Obtener")]
     public IActionResult Get()
@@ -27,18 +26,20 @@ public class MovimientoInternoController : ControllerBase
         {
             var movimientoInterno = _context.MovimientoInterno.ToList();
 
-            if (movimientoInterno.Count == 0) return NotFound("No hay movimientoInterno Registrados");
+            if (movimientoInterno.Count == 0)
+            {
+                return NotFound(new { message = "No hay movimientoInterno Registrados" });
+            }
 
             return Ok(movimientoInterno);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
-    // METODO PARA LEER LOS EMPLEADOS SEGUN SU ID
-
+// METODO PARA LEER LOS EMPLEADOS SEGUN SU ID
     [HttpGet("Buscar")]
     public IActionResult Get(int id)
     {
@@ -46,17 +47,20 @@ public class MovimientoInternoController : ControllerBase
         {
             var movimientoInterno = _context.MovimientoInterno.Find(id);
 
-            if (movimientoInterno == null) return NotFound($"No hay movimientoInterno con codigo: {id}");
+            if (movimientoInterno == null)
+            {
+                return NotFound(new { message = $"No hay movimientoInterno con codigo: {id}" });
+            }
+
             return Ok(movimientoInterno);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
-    //METODO PARA CREAR Empleados
-
+//METODO PARA CREAR SALIDAS
     [HttpPost("Crear")]
     public IActionResult Post(MovimientoInterno model)
     {
@@ -64,47 +68,54 @@ public class MovimientoInternoController : ControllerBase
         {
             _context.Add(model);
             _context.SaveChanges();
-            return Ok("movimientoInterno Agregado Correctamente");
+            return Ok(new { message = "movimientoInterno Agregado Correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
-    //METODO PARA ACTUALIZAR Empleados
-
+//METODO PARA ACTUALIZAR Empleados
     [HttpPut("Editar")]
     public IActionResult Put(MovimientoInterno model)
     {
         if (model == null || model.IdMovimientoInterno == 0)
         {
             if (model == null)
-                return BadRequest("El modelo de datos no es valido");
-            if (model.IdMovimientoInterno == 0) return BadRequest($"El codigo de entradaExterna {model.IdMovimientoInterno} no es valido");
+            {
+                return BadRequest(new { message = "El modelo de datos no es valido" });
+            }
+            else if (model.IdMovimientoInterno == 0)
+            {
+                return BadRequest(new
+                    { message = $"El codigo de entradaExterna {model.IdMovimientoInterno} no es valido" });
+            }
         }
 
         try
         {
             var movimientoInterno = _context.MovimientoInterno.Find(model.IdMovimientoInterno);
 
-            if (movimientoInterno == null) return BadRequest($"El codigo de movimientoInterno {model.IdMovimientoInterno} no es valido");
+            if (movimientoInterno == null)
+            {
+                return BadRequest(new
+                    { message = $"El codigo de movimientoInterno {model.IdMovimientoInterno} no es valido" });
+            }
 
             movimientoInterno.IdSalida = model.IdSalida;
             movimientoInterno.IdEntrada = model.IdEntrada;
 
-
             _context.SaveChanges();
-            return Ok("Los detalles de la movimientoInterno se han actualizado");
+            return Ok(new { message = "Los detalles de la movimientoInterno se han actualizado" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
-    //METODO PARA ELIMINAR UN EMPLEADO
-
+//METODO PARA ELIMINAR UN EMPLEADO
     [HttpDelete("Eliminar")]
     public IActionResult Delete(int id)
     {
@@ -112,17 +123,23 @@ public class MovimientoInternoController : ControllerBase
         {
             var movimientoInterno = _context.MovimientoInterno.Find(id);
 
-            if (movimientoInterno == null) return NotFound($"No existe movimientoInterno con codigo {id}");
+            if (movimientoInterno == null)
+            {
+                return NotFound(new { message = $"No existe movimientoInterno con codigo {id}" });
+            }
 
             _context.MovimientoInterno.Remove(movimientoInterno);
             _context.SaveChanges();
 
-            return Ok("Registro eliminado correctamente");
+            return Ok(new { message = "Registro eliminado correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
+
+
+
     
 }

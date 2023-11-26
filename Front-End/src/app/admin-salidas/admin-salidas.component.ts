@@ -57,11 +57,18 @@ export class AdminSalidasComponent {
   }
 
   addSalida() {
-    this.postSalida();
+    if (this.modeloSalida.idSalida == 0){
+      this.postSalida()
+    }else{
+      this.editarSalida()
+    }
+
   }
   postSalida() {
 
-    let url = 'https://localhost:44308/api/Salidas/Crear'
+    let url = ''
+
+      url = 'https://localhost:44308/api/Salidas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -82,13 +89,57 @@ export class AdminSalidasComponent {
     this.limpiarModelo()
   }
 
+  editarSalida() {
+    const url = 'https://localhost:44308/api/Salidas/Editar'
+    this.http.put(url, this.modeloSalida).subscribe(response => {
+      alert('Registro Exitoso');
+      this.obtenerDatos()
+    }, error => {
+      console.log(error)
+      alert('Error: ' + error);
+    });
+  }
+
+
+  eliminarSalida(id : number){
+
+  const urlDelete = 'https://localhost:44308/api/Salidas/Eliminar';
+    // Realiza la solicitud POST
+    this.http.delete(`${urlDelete}?id=${id}`).subscribe(
+      (response) => {
+
+        alert('Registro eliminado Exitosamente')
+        this.obtenerDatos()
+      },
+      (error) => {
+        // Maneja los errores de la solicitud
+        alert('Error: '+ JSON.stringify(error));
+      }
+    );
+
+  }
+
+  cargarDatos(item : any){
+    this.modeloSalida = {
+
+      idSalida : item.idSalida,
+      idEmpleado : item.idEmpleado,
+      idCuarto : item.idCuarto,
+      idProducto : item.idProducto,
+      cantidad : item.cantidad,
+      tipo : item.tipo,
+      fecha : item.fecha
+
+    }
+  }
+
   limpiarModelo(){
 
     this.modeloSalida.idSalida = 0
-    this.modeloSalida.idEmpleado = 0
-    this.modeloSalida.idCuarto = 0
-    this.modeloSalida.idProducto = 0
-    this.modeloSalida.cantidad = 0
+    this.modeloSalida.idEmpleado = null
+    this.modeloSalida.idCuarto = null
+    this.modeloSalida.idProducto = null
+    this.modeloSalida.cantidad = null
     this.modeloSalida.tipo = ""
     this.modeloSalida.fecha = ""
   }
@@ -97,11 +148,11 @@ export class AdminSalidasComponent {
 
 class Salidas{
   idSalida: number = 0;
-  idProducto: number = 0;
-  idCuarto: number = 0;
-  idEmpleado: number = 0;
+  idProducto: number = null;
+  idCuarto: number = null;
+  idEmpleado: number = null;
   fecha: string = "";
-  cantidad: number = 0;
+  cantidad: number = null;
   tipo: string = ""
 
 }

@@ -31,11 +31,11 @@ public class UsuariosController : ControllerBase
             
             _context.Add(modelo);
             _context.SaveChanges();
-            return Ok("usuario Agregado Correctamente");
+            return Ok(new {message = "Usuario agregado correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new {message = ex.Message });
         }
     }
     
@@ -52,7 +52,7 @@ public class UsuariosController : ControllerBase
 
             if (usuarios == null)
             {
-                return NotFound($"USUARIO O CONTRASENA INCORRECTA");
+                return NotFound(new {message = "USUARIO O CONTRASENA INCORRECTAS" });
             }
             else
             {
@@ -69,25 +69,9 @@ public class UsuariosController : ControllerBase
                 }
                 else
                 {
-                    return BadRequest("Usuario o contrasena incorrectas");
+                    return BadRequest(new {message = "Usuario o contrasena incorrecta" });
                 }   
             } 
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        
-        try
-        {
-            Usuarios modelo = new Usuarios();
-            modelo.Username = model.Username;
-            modelo.Password = encrypt.GetSHA256(model.Password);
-            modelo.Rol = model.Rol;
-            
-            _context.Add(modelo);
-            _context.SaveChanges();
-            return Ok("usuario Agregado Correctamente");
         }
         catch (Exception ex)
         {

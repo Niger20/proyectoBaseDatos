@@ -25,7 +25,7 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Codigo Producto"  [(ngModel)]="modeloSalida.idProducto">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloSalida.idProducto">
         <input class="inputNormal" type="number" placeholder="Codigo Empleado" [(ngModel)]="modeloSalida.idEmpleado">
         <input class="inputNormal" type="number" placeholder="Cuarto" [(ngModel)]="modeloSalida.idCuarto">
         <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloSalida.fecha">
@@ -72,8 +72,8 @@
           <td>{{ item.cantidad }}</td>
           <td>{{ item.tipo }}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" id="{{item.idSalida}}"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" id="{{item.idSalida}}"></button>
+            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" id="{{item.idSalida}}" (click)="cargarDatos(item)"></button>
+            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" id="{{item.idSalida}}" (click)="eliminarSalida(item.idSalida)"></button>
           </td>
 
         </tr>

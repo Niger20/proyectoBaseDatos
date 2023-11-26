@@ -25,13 +25,20 @@ public class ClientesController : ControllerBase
         {
             var clientes = _context.Clientes.ToList();
 
-            if (clientes.Count == 0) return NotFound("No hay Clientes Registrados");
+            if (clientes.Count == 0) return NotFound(new { message = "No hay clientes registrados" });
 
-            return Ok(clientes);
+            var response = new
+            {
+                Code = 200,
+                Message = "Lista Ventas",
+                Data = clientes
+            };
+
+            return Ok(response);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -44,12 +51,12 @@ public class ClientesController : ControllerBase
         {
             var clientes = _context.Clientes.Find(id);
 
-            if (clientes == null) return NotFound($"No hay clientes con codigo: {id}");
+            if (clientes == null) return NotFound(new { message = "No existe cliente con tal codigo" });
             return Ok(clientes);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -62,11 +69,11 @@ public class ClientesController : ControllerBase
         {
             _context.Add(model);
             _context.SaveChanges();
-            return Ok("Cliente Agregado Correctamente");
+            return Ok(new { message = "Cliente agregado correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -78,15 +85,15 @@ public class ClientesController : ControllerBase
         if (model == null || model.IdCliente == 0)
         {
             if (model == null)
-                return BadRequest("El modelo de datos no es valido");
-            if (model.IdCliente == 0) return BadRequest($"El codigo de cliente {model.IdCliente} no es valido");
+                return BadRequest(new { message = "Los datos no son validos" });
+            if (model.IdCliente == 0) return BadRequest(new { message = "El codigo de cliente no es valido" });
         }
 
         try
         {
             var clientes = _context.Clientes.Find(model.IdCliente);
 
-            if (clientes == null) return BadRequest($"El codigo de cliente {model.IdCliente} no es valido");
+            if (clientes == null) return BadRequest(new { message = "No existe cliente con tal codigo" });
 
             clientes.Identidad = model.Identidad;
             clientes.PrimerNombre = model.PrimerNombre;
@@ -97,11 +104,11 @@ public class ClientesController : ControllerBase
 
 
             _context.SaveChanges();
-            return Ok("Los detalles del Cliente se han actualizado");
+            return Ok(new { message = "Los datos del cliente se han actualizado" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -114,16 +121,16 @@ public class ClientesController : ControllerBase
         {
             var clientes = _context.Clientes.Find(id);
 
-            if (clientes == null) return NotFound($"No existe cliente con codigo {id}");
+            if (clientes == null) return NotFound(new { message = "No existe cliente con ese codigo" });
 
             _context.Clientes.Remove(clientes);
             _context.SaveChanges();
 
-            return Ok("Registro eliminado correctamente");
+            return Ok(new { message = "Registro eliminado correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
     

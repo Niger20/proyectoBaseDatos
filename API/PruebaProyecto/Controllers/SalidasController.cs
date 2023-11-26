@@ -15,14 +15,14 @@ namespace PruebaProyecto.Controllers;
 
     public class SalidasController : Controller
     {
-        private readonly MyDBcontext _context;
+        private static MyDBcontext _context;
+        
 
         public SalidasController(MyDBcontext context)
         {
             _context = context;
         }
-
-
+        
         //  METODO PARA LEER TODOS LOS EMPLEADOS DE LA BASE DE DATOS
         [HttpGet("Obtener")]
         public IActionResult Get()
@@ -31,7 +31,7 @@ namespace PruebaProyecto.Controllers;
             {
                 var salidas = _context.Salidas.ToList();
 
-                if (salidas.Count == 0) return NotFound("No hay salidas Registradas");
+                if (salidas.Count == 0) return NotFound(new {message = "no hay registros de salidas"});
                 
                 var response = new 
                 {
@@ -44,7 +44,7 @@ namespace PruebaProyecto.Controllers;
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -57,25 +57,35 @@ namespace PruebaProyecto.Controllers;
             {
                 var salidas = _context.Salidas.Find(id);
 
-                if (salidas == null) return NotFound($"No hay Salidas con codigo: {id}");
+                if (salidas == null) return NotFound(new { message = $"No hay Salidas con codigo: {id}" });
                 return Ok(salidas);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message});
             }
         }
 
-        //METODO PARA CREAR Empleados
+        //METODO PARA CREAR salidas
 
         [HttpPost("Crear")]
         public IActionResult Post(Salidas model)
         {
             try
             {
-                _context.Add(model);
-                _context.SaveChanges();
-                return Ok(new { message = "salida registrada Correctamente" });
+
+                if (this.ActualizarCantidadSalida(model.IdCuarto,model.Cantidad))
+                {
+                    _context.Add(model);
+                    _context.SaveChanges();
+                    return Ok(new { message = "salida registrada Correctamente" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Error detectado, verifique los datos ingresados" });
+                }
+                
+                
             }
             catch (Exception ex)
             {
@@ -91,15 +101,15 @@ namespace PruebaProyecto.Controllers;
             if (model == null || model.IdSalida == 0)
             {
                 if (model == null)
-                    return BadRequest("El modelo de datos no es valido");
-                if (model.IdSalida == 0) return BadRequest($"El codigo de salida {model.IdSalida} no es valido");
+                    return BadRequest(new { message = "Los datos no son validos"});
+                if (model.IdSalida == 0) return BadRequest(new { message = "el codigo de salida no es valido"});
             }
 
             try
             {
                 var salidas = _context.Salidas.Find(model.IdSalida);
 
-                if (salidas == null) return BadRequest($"El codigo de salida {model.IdSalida} no es valido");
+                if (salidas == null) return BadRequest(new { message = "el codigo de salida no es valido"});
 
                 salidas.IdProducto = model.IdProducto;
                 salidas.IdCuarto = model.IdCuarto;
@@ -110,11 +120,11 @@ namespace PruebaProyecto.Controllers;
 
 
                 _context.SaveChanges();
-                return Ok("Los detalles de la salida se han actualizado");
+                return Ok(new { message = "Los detalles se han actualizado correctamente"});
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -127,16 +137,48 @@ namespace PruebaProyecto.Controllers;
             {
                 var salidas = _context.Salidas.Find(id);
 
-                if (salidas == null) return NotFound($"No existe salida con codigo {id}");
+                if (salidas == null) return NotFound(new { message = "No existe salida con ese codigo"});
 
                 _context.Salidas.Remove(salidas);
                 _context.SaveChanges();
 
-                return Ok("Registro eliminado correctamente");
+                return Ok(new { message = "Registro eliminado correctamente"});
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        
+        //METODO PARA ACTUALIZAR CANTIDAD DE CUARTOS Salida
+        [HttpPut("ActualizarCantidadSalida")]
+        public Boolean ActualizarCantidadSalida(int IdCuarto, int Cantidad)
+        {
+            try
+            {
+                var cuartosFrios = _context.CuartosFrios.Find(IdCuarto);
+
+                if (cuartosFrios == null)
+                {
+                    return false;
+                }
+
+                if (cuartosFrios.CantidadActual < Cantidad)
+                {
+                    return false;
+                }
+                else
+                {
+                    cuartosFrios.CantidadActual = cuartosFrios.CantidadActual - Cantidad;
+                    _context.SaveChanges();
+                    return true;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 

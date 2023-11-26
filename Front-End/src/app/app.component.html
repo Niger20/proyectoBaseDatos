@@ -9,10 +9,10 @@
 </head>
 <body>
 
-<div *ngIf="loginStatus == false">
+<div *ngIf="loginStatus == true">
   <app-login></app-login>
 </div>
-<div *ngIf="loginStatus == true && userRol === 'Admin'">
+<div *ngIf="loginStatus == false">
   <app-inicio-admin></app-inicio-admin>
 </div>
 

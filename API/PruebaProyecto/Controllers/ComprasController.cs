@@ -9,12 +9,14 @@ using PruebaProyecto.Models;
 
 public class ComprasController : ControllerBase
 {
-    private readonly MyDBcontext _context;
+    private static MyDBcontext _context;
+    
 
     public ComprasController(MyDBcontext context)
     {
         _context = context;
     }
+    
 
 
     //  METODO PARA LEER TODOS LOS EMPLEADOS DE LA BASE DE DATOS
@@ -25,13 +27,20 @@ public class ComprasController : ControllerBase
         {
             var compras = _context.Compras.ToList();
 
-            if (compras.Count == 0) return NotFound("No hay Compras Registrados");
+            if (compras.Count == 0) return NotFound(new { message = "No hay compras registradas" });
 
-            return Ok(compras);
+            var response = new
+            {
+                Code = 200,
+                Message = "Lista Ventas",
+                Data = compras
+            };
+
+            return Ok(response);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -44,12 +53,12 @@ public class ComprasController : ControllerBase
         {
             var compras = _context.Compras.Find(id);
 
-            if (compras == null) return NotFound($"No hay compras con codigo: {id}");
+            if (compras == null) return NotFound(new { message = "Codigo de compra no valido" });
             return Ok(compras);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -60,13 +69,20 @@ public class ComprasController : ControllerBase
     {
         try
         {
-            _context.Add(model);
-            _context.SaveChanges();
-            return Ok("compra Agregado Correctamente");
+            if (this.ActualizarCantidadCompra(model.IdProducto, model.Cantidad))
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok(new { message = "Compra agregada correctamente" });   
+            }
+            else
+            {
+                return BadRequest(new { message = "error en los datos, verifiquelos" });
+            }
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -78,15 +94,15 @@ public class ComprasController : ControllerBase
         if (model == null || model.IdCompra == 0)
         {
             if (model == null)
-                return BadRequest("El modelo de datos no es valido");
-            if (model.IdCompra == 0) return BadRequest($"El codigo de compra {model.IdCompra} no es valido");
+                return BadRequest(new { message = "datos no validos" });
+            if (model.IdCompra == 0) return BadRequest(new { message = "Codigo de compra invalido" });
         }
 
         try
         {
             var compras = _context.Compras.Find(model.IdCompra);
 
-            if (compras == null) return BadRequest($"El codigo de compra {model.IdCompra} no es valido");
+            if (compras == null) return BadRequest(new { message = "Codigo de compra invalido" });
 
             compras.IdProveedor = model.IdProveedor;
             compras.IdProducto = model.IdProducto;
@@ -96,11 +112,11 @@ public class ComprasController : ControllerBase
 
 
             _context.SaveChanges();
-            return Ok("Los detalles del Cliente se han actualizado");
+            return Ok(new { message = "Los datos del cliente se han actualizado" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 
@@ -113,16 +129,41 @@ public class ComprasController : ControllerBase
         {
             var compras = _context.Compras.Find(id);
 
-            if (compras == null) return NotFound($"No existe compra con codigo {id}");
+            if (compras == null) return NotFound(new { message = "Codigo de compra invalido" });
 
             _context.Compras.Remove(compras);
             _context.SaveChanges();
 
-            return Ok("Registro eliminado correctamente");
+            return Ok(new { message = "registro eliminado correctamente" });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+    
+    [HttpPut("ActualizarCantidadCompra")]
+        
+    //METODO PARA ACTUALIZAR CANTIDAD DE productos compra
+    public Boolean ActualizarCantidadCompra(int IdProducto, int Cantidad)
+    {
+        try
+        {
+            var productos = _context.Productos.Find(IdProducto);
+
+            if (productos == null)
+            {
+                return false;
+            }
+                
+            productos.Cantidad = productos.Cantidad + Cantidad;
+
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
         }
     }
     

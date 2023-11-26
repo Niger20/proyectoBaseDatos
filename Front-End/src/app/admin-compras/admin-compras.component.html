@@ -25,16 +25,16 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Codigo Proveedor" >
-        <input class="inputNormal" type="number" placeholder="Codigo Producto" >
-        <input class="inputNormal" type="number" placeholder="Precio" >
-        <input class="inputNormal" type="date" placeholder="Fecha" >
-        <input class="inputNormal" type="number" placeholder="Cantidad">
+        <input class="inputNormal" type="number" placeholder="Codigo Proveedor" [(ngModel)]="modeloCompras.idProveedor">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloCompras.idProducto">
+        <input class="inputNormal" type="number" placeholder="Precio" [(ngModel)]="modeloCompras.precio">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloCompras.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloCompras.cantidad">
 
 
         <div class="buttonContainer">
-          <button class="buttonForm confirmar" >CONFIRMAR</button>
-          <button class="buttonForm limpiar" id="limpiar" >LIMPIAR</button>
+          <button class="buttonForm confirmar" (click)="addCompra()" >CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()" >LIMPIAR</button>
         </div>
 
       </div>
@@ -57,17 +57,17 @@
           <th>Total</th>
           <th>Acciones</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idCompra }}</td>
+          <td>{{ item.idProveedor }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.precio }}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.total }}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
+            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" (click)="cargarDatos(item)"></button>
+            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" (click)="eliminarCompra(item.idCompra)"></button>
           </td>
 
         </tr>

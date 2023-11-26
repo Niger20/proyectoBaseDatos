@@ -17,7 +17,7 @@ namespace PruebaProyecto.Controllers
         }
 
 
-        //  METODO PARA LEER TODOS LOS PRODUCTOS DE LA BASE DE DATOS
+//  METODO PARA LEER TODOS LOS PRODUCTOS DE LA BASE DE DATOS
         [HttpGet("Obtener")]
         public IActionResult Get()
         {
@@ -27,20 +27,25 @@ namespace PruebaProyecto.Controllers
 
                 if (productos.Count == 0)
                 {
-                    return NotFound("No hay Productos");
+                    return NotFound(new { message = "No hay Productos" });
                 }
 
-                return Ok(productos);
+                var response = new
+                {
+                    Code = 200,
+                    Message = "Lista Ventas",
+                    Data = productos
+                };
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-        // METODO PARA LEER LOS PRODUCTOS SEGUN SU ID
-
+// METODO PARA LEER LOS PRODUCTOS SEGUN SU ID
         [HttpGet("Buscar")]
         public IActionResult Get(int id)
         {
@@ -50,18 +55,18 @@ namespace PruebaProyecto.Controllers
 
                 if (productos == null)
                 {
-                    return NotFound($"No hay productos con codigo: {id}");
+                    return NotFound(new { message = $"No hay productos con codigo: {id}" });
                 }
+
                 return Ok(productos);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-        //METODO PARA CREAR PRODUCTOS
-
+//METODO PARA CREAR PRODUCTOS
         [HttpPost("Crear")]
         public IActionResult Post(Productos model)
         {
@@ -69,29 +74,27 @@ namespace PruebaProyecto.Controllers
             {
                 _context.Add(model);
                 _context.SaveChanges();
-                return Ok("Producto Creado Correctamente");
+                return Ok(new { message = "Producto Creado Correctamente" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-        //METODO PARA ACTUALIZAR PRODUCTOS
-
+//METODO PARA ACTUALIZAR PRODUCTOS
         [HttpPut("Editar")]
-
         public IActionResult Put(Productos model)
         {
             if (model == null || model.IdProducto == 0)
             {
                 if (model == null)
                 {
-                    return BadRequest("El modelo de datos no es valido");
+                    return BadRequest(new { message = "El modelo de datos no es valido" });
                 }
                 else if (model.IdProducto == 0)
                 {
-                    return BadRequest($"El codigo de producto {model.IdProducto} no es valido");
+                    return BadRequest(new { message = $"El codigo de producto {model.IdProducto} no es valido" });
                 }
             }
 
@@ -101,7 +104,7 @@ namespace PruebaProyecto.Controllers
 
                 if (productos == null)
                 {
-                    return BadRequest($"El codigo de producto {model.IdProducto} no es valido");
+                    return BadRequest(new { message = $"El codigo de producto {model.IdProducto} no es valido" });
                 }
 
                 productos.Descripcion = model.Descripcion;
@@ -109,18 +112,16 @@ namespace PruebaProyecto.Controllers
                 productos.Peso = model.Peso;
 
                 _context.SaveChanges();
-                return Ok("Los detalles del producto se han actualizado");
+                return Ok(new { message = "Los detalles del producto se han actualizado" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-        //METODO PARA ELIMINAR UN PRODUCTO
-
+//METODO PARA ELIMINAR UN PRODUCTO
         [HttpDelete("Eliminar")]
-
         public IActionResult Delete(int id)
         {
             try
@@ -129,19 +130,21 @@ namespace PruebaProyecto.Controllers
 
                 if (productos == null)
                 {
-                    return NotFound($"No existe producto con codigo {id}");
+                    return NotFound(new { message = $"No existe producto con codigo {id}" });
                 }
 
                 _context.Productos.Remove(productos);
                 _context.SaveChanges();
 
-                return Ok("Registro eliminado correctamente");
+                return Ok(new { message = "Registro eliminado correctamente" });
             }
             catch (Exception ex)
-            { 
-                return BadRequest(ex.Message);
+            {
+                return BadRequest(new { message = ex.Message });
             }
-
         }
+
+        
+        
     }
 }

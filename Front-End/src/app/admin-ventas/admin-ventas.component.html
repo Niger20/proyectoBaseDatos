@@ -25,17 +25,17 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Codigo Cliente" >
-        <input class="inputNormal" type="number" placeholder="Codigo Producto" >
-        <input class="inputNormal" type="number" placeholder="Precio" >
-        <input class="inputNormal" type="date" placeholder="Fecha" >
-        <input class="inputNormal" type="number" placeholder="Cantidad">
-        <input class="inputNormal" type="number" placeholder="Salida Asociada">
+        <input class="inputNormal" type="number" placeholder="Codigo Cliente" [(ngModel)]="modeloVentas.idCliente">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloVentas.idProducto">
+        <input class="inputNormal" type="number" placeholder="Precio" [(ngModel)]="modeloVentas.precio">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloVentas.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloVentas.cantidad">
+        <input class="inputNormal" type="number" placeholder="Salida Asociada" [(ngModel)]="modeloSalidaExterna.idSalida">
 
 
         <div class="buttonContainer">
-          <button class="buttonForm confirmar" >CONFIRMAR</button>
-          <button class="buttonForm limpiar" id="limpiar" >LIMPIAR</button>
+          <button class="buttonForm confirmar" (click)="addVenta()">CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
         </div>
 
       </div>
@@ -58,17 +58,17 @@
           <th>Total</th>
           <th>Acciones</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idVenta }}</td>
+          <td>{{ item.idCliente }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.precio }}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.total }}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
+            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon" (click)="cargarDatos(item)"></button>
+            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" (click)="eliminarVenta(item.idVenta)"></button>
           </td>
 
         </tr>

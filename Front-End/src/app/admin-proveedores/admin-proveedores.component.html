@@ -25,16 +25,16 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="number" placeholder="Identidad" >
-        <input class="inputNormal" type="number" placeholder="Primer Nombre" >
-        <input class="inputNormal" type="number" placeholder="Segundo Nombre" >
-        <input class="inputNormal" type="number" placeholder="Primer Apellido" >
-        <input class="inputNormal" type="number" placeholder="Segundo Apellido" >
+        <input class="inputNormal" type="text" placeholder="Identidad" [(ngModel)]="modeloProveedores.identidad">
+        <input class="inputNormal" type="text" placeholder="Primer Nombre" [(ngModel)]="modeloProveedores.primerNombre">
+        <input class="inputNormal" type="text" placeholder="Segundo Nombre" [(ngModel)]="modeloProveedores.segundoNombre">
+        <input class="inputNormal" type="text" placeholder="Primer Apellido" [(ngModel)]="modeloProveedores.primerApellido">
+        <input class="inputNormal" type="text" placeholder="Segundo Apellido" [(ngModel)]="modeloProveedores.segundoApellido">
 
 
         <div class="buttonContainer">
-          <button class="buttonForm confirmar" >CONFIRMAR</button>
-          <button class="buttonForm limpiar" id="limpiar" >LIMPIAR</button>
+          <button class="buttonForm confirmar" (click)="addProveedor()" >CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
         </div>
 
       </div>
@@ -56,17 +56,16 @@
           <th>Segundo Apellido</th>
           <th>Acciones</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idProveedor }}</td>
+          <td>{{ item.identidad }}</td>
+          <td>{{ item.primerNombre }}</td>
+          <td>{{ item.segundoNombre}}</td>
+          <td>{{ item.primerApellido}}</td>
+          <td>{{ item.segundoApellido }}</td>
           <td>
-            <button class="headerButton"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
-            <button class="headerButton"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
+            <button class="headerButton" (click)="cargarDatos(item)"><img src="assets/lapiz.png" alt="" class="buttonIcon"></button>
+            <button class="headerButton" (click)="eliminarEmpleado(item.idProveedor)"><img src="assets/basura%20(2).png" alt="" class="buttonIcon"></button>
           </td>
 
         </tr>

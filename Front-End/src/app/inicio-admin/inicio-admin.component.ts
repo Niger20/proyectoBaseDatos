@@ -9,15 +9,24 @@ import {AdminProveedoresComponent} from "../admin-proveedores/admin-proveedores.
 import {AdminEmpleadosComponent} from "../admin-empleados/admin-empleados.component";
 import {AdminUsuariosComponent} from "../admin-usuarios/admin-usuarios.component";
 import {AdminReportesComponent} from "../admin-reportes/admin-reportes.component";
+import {AdminProductosComponent} from "../admin-productos/admin-productos.component";
+import {SharedServiceService} from "../services/shared-service.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-inicio-admin',
   standalone: true,
-  imports: [CommonModule, AdminSalidasComponent, AdminEntradasComponent, AdminVentasComponent, AdminComprasComponent, AdminClientesComponent, AdminProveedoresComponent, AdminEmpleadosComponent, AdminUsuariosComponent, AdminReportesComponent],
+  imports: [CommonModule, AdminSalidasComponent, AdminEntradasComponent, AdminVentasComponent, AdminComprasComponent, AdminClientesComponent, AdminProveedoresComponent, AdminEmpleadosComponent, AdminUsuariosComponent, AdminReportesComponent, AdminProductosComponent],
   templateUrl: './inicio-admin.component.html',
   styleUrl: './inicio-admin.component.css'
 })
 export class InicioAdminComponent {
+
+  constructor(private sharedService: SharedServiceService, private http: HttpClient) {}
+
+  cerrarSesion(){
+    this.sharedService.logout()
+  }
 
   pestanaActiva:string = "inicio"
   cambiarPestana(pestana : string){

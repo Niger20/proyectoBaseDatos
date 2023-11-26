@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PruebaProyecto.DAL;
 using PruebaProyecto.Models;
@@ -30,7 +31,7 @@ public class CuartosFriosController : Controller
 
                 if (cuartosFrios.Count == 0)
                 {
-                    return NotFound("No hay Cuartos");
+                    return NotFound(new { message = "No hay cuartos registrados" });
                 }
 
 
@@ -47,7 +48,7 @@ public class CuartosFriosController : Controller
             catch (Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -62,13 +63,13 @@ public class CuartosFriosController : Controller
 
                 if (cuartosFrios == null)
                 {
-                    return NotFound($"No hay cuartos con codigo: {id}");
+                    return NotFound(new { message = "codigo de cuarto invalido" });
                 }
                 return Ok(cuartosFrios);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -81,15 +82,15 @@ public class CuartosFriosController : Controller
             {
                 _context.Add(model);
                 _context.SaveChanges();
-                return Ok("Cuarto Agregado Correctamente");
+                return Ok(new { message = "cuarto agregado correctamente" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-        //METODO PARA ACTUALIZAR Cuartos
+        //METODO PARA ACTUALIZAR CUARTOS
 
         [HttpPut("Editar")]
 
@@ -99,11 +100,11 @@ public class CuartosFriosController : Controller
             {
                 if (model == null)
                 {
-                    return BadRequest("El modelo de datos no es valido");
+                    return BadRequest(new { message = "datos invalidos" });
                 }
                 else if (model.IdCuarto == 0)
                 {
-                    return BadRequest($"El codigo de cuarto {model.IdCuarto} no es valido");
+                    return BadRequest(new { message = "codigo de cuarto invalido" });
                 }
             }
 
@@ -113,22 +114,24 @@ public class CuartosFriosController : Controller
 
                 if (cuartosFrios == null)
                 {
-                    return BadRequest($"El codigo de cuarto {model.IdCuarto} no es valido");
+                    return BadRequest(new { message = "codigo de cuarto invalido" });
                 }
 
                 cuartosFrios.CapacidadMaxima = model.CapacidadMaxima;
                 cuartosFrios.CantidadActual = model.CantidadActual;
 
                 _context.SaveChanges();
-                return Ok("Los detalles del Cuarto se han actualizado");
+                return Ok(new { message = "cuarto actualizado correctamente" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
+        
+        
 
-        //METODO PARA ELIMINAR UN EMPLEADO
+        //METODO PARA ELIMINAR UN CUARTO
 
         [HttpDelete("Eliminar")]
 
@@ -140,17 +143,17 @@ public class CuartosFriosController : Controller
 
                 if (cuartosFrios == null)
                 {
-                    return NotFound($"No existe cuarto con codigo {id}");
+                    return NotFound(new { message = "Codigo de cuarto invalido" });
                 }
 
                 _context.CuartosFrios.Remove(cuartosFrios);
                 _context.SaveChanges();
 
-                return Ok("Registro eliminado correctamente");
+                return Ok(new { message = "Cuarto eliminado correctamente" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });          
             }
 
         }
