@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {SoloLetrasDirective} from "../soloLetras/solo-letras.directive";
 
 
 @Component({
   selector: 'app-admin-proveedores',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SoloLetrasDirective],
   templateUrl: './admin-proveedores.component.html',
   styleUrl: './admin-proveedores.component.css'
 })

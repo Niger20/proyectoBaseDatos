@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {SoloLetrasDirective} from "../soloLetras/solo-letras.directive";
+import {SoloNumeroDirective} from "../soloNumero/solo-numero.directive";
 
 @Component({
   selector: 'app-vendedor-clientes',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SoloLetrasDirective, SoloNumeroDirective],
   templateUrl: './vendedor-clientes.component.html',
   styleUrl: './vendedor-clientes.component.css'
 })

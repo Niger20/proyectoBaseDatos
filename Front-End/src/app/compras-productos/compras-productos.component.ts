@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {SoloLetrasDirective} from "../soloLetras/solo-letras.directive";
 
 @Component({
   selector: 'app-compras-productos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SoloLetrasDirective],
   templateUrl: './compras-productos.component.html',
   styleUrl: './compras-productos.component.css'
 })

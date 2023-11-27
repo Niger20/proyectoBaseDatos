@@ -25,11 +25,11 @@
       </div>
 
       <div class="form">
-        <input class="inputNormal" type="text" placeholder="Identidad" [(ngModel)]="modeloEmpleados.identidad">
-        <input class="inputNormal" type="text" placeholder="Primer Nombre" [(ngModel)]="modeloEmpleados.primerNombre">
-        <input class="inputNormal" type="text" placeholder="Segundo Nombre" [(ngModel)]="modeloEmpleados.segundoNombre">
-        <input class="inputNormal" type="text" placeholder="Primer Apellido" [(ngModel)]="modeloEmpleados.primerApellido">
-        <input class="inputNormal" type="text" placeholder="Segundo Apellido" [(ngModel)]="modeloEmpleados.segundoApellido">
+        <input class="inputNormal" type="text" placeholder="Identidad" [(ngModel)]="modeloEmpleados.identidad" >
+        <input class="inputNormal" type="text" placeholder="Primer Nombre" [(ngModel)]="modeloEmpleados.primerNombre" appSoloLetras>
+        <input class="inputNormal" type="text" placeholder="Segundo Nombre" [(ngModel)]="modeloEmpleados.segundoNombre" appSoloLetras>
+        <input class="inputNormal" type="text" placeholder="Primer Apellido" [(ngModel)]="modeloEmpleados.primerApellido" appSoloLetras>
+        <input class="inputNormal" type="text" placeholder="Segundo Apellido" [(ngModel)]="modeloEmpleados.segundoApellido" appSoloLetras>
 
 
         <div class="buttonContainer">
