@@ -42,7 +42,7 @@ export class AdminSalidasComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/Salidas/Obtener';
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Obtener';
 
     this.http.get<SalidasResponse>(url).subscribe(
       (response) => {
@@ -68,7 +68,7 @@ export class AdminSalidasComponent {
 
     let url = ''
 
-      url = 'https://localhost:44308/api/Salidas/Crear'
+      url = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export class AdminSalidasComponent {
   }
 
   editarSalida() {
-    const url = 'https://localhost:44308/api/Salidas/Editar'
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Editar'
     this.http.put(url, this.modeloSalida).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()
@@ -103,7 +103,7 @@ export class AdminSalidasComponent {
 
   eliminarSalida(id : number){
 
-  const urlDelete = 'https://localhost:44308/api/Salidas/Eliminar';
+  const urlDelete = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {

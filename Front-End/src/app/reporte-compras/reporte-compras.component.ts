@@ -29,7 +29,7 @@ export class ReporteComprasComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/VistaCompras';
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/VistaCompras';
 
     this.http.get<vistaComprasResponse>(url).subscribe(
       (response) => {

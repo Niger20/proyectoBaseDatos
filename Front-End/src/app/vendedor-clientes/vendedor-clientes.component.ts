@@ -27,7 +27,7 @@ export class VendedorClientesComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/Clientes/Obtener';
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Obtener';
 
     this.http.get<ClientesResponse>(url).subscribe(
       (response) => {
@@ -49,7 +49,7 @@ export class VendedorClientesComponent {
 
     let url = ''
 
-    url = 'https://localhost:44308/api/Clientes/Crear'
+    url = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

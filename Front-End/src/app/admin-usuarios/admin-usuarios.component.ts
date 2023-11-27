@@ -23,7 +23,7 @@ export class AdminUsuariosComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/Usuarios/Obtener';
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Usuarios/Obtener';
 
     this.http.get<UsuariosResponse>(url).subscribe(
       (response) => {
@@ -44,7 +44,7 @@ export class AdminUsuariosComponent {
 
     let url = ''
 
-    url = 'https://localhost:44308/api/Usuarios/Crear'
+    url = 'http://www.alimentoscarnisimasa.somee.com/api/Usuarios/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export class AdminUsuariosComponent {
 
   eliminarUsuario(username : string){
 
-    const urlDelete = 'https://localhost:44308/api/Usuarios/Eliminar';
+    const urlDelete = 'http://www.alimentoscarnisimasa.somee.com/api/Usuarios/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?username=${username}`).subscribe(
       (response) => {

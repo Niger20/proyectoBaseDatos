@@ -40,7 +40,7 @@ export class ComprasComprasComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://localhost:44308/api/Compras/Obtener';
+    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Compras/Obtener';
 
     this.http.get<ComprasResponse>(url).subscribe(
       (response) => {
@@ -61,7 +61,7 @@ export class ComprasComprasComponent {
 
     let url = ''
 
-    url = 'https://localhost:44308/api/Compras/Crear'
+    url = 'http://www.alimentoscarnisimasa.somee.com/api/Compras/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
