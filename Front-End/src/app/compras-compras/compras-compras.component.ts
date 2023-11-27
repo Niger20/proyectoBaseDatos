@@ -1,0 +1,111 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {FormsModule} from "@angular/forms";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+
+@Component({
+  selector: 'app-compras-compras',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './compras-compras.component.html',
+  styleUrl: './compras-compras.component.css'
+})
+export class ComprasComprasComponent {
+
+
+  modeloCompras: Compras = new Compras()
+  arregloDatos: Compras [] = []
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.obtenerDatos();
+  }
+
+  formatearFecha(date: string): string {
+    let fecha_ = new Date(date)
+    let dia =  fecha_.getDate()
+    let mes = ""
+    if (fecha_.getMonth() < 9){
+      mes = "0" + (fecha_.getMonth() + 1)
+    }else {
+      mes = (fecha_.getMonth() + 1) + ''
+    }
+    let anio = fecha_.getFullYear()
+
+    let fechaFormateada = `${dia}-${mes}-${anio}`
+
+    return fechaFormateada
+  }
+
+  obtenerDatos() {
+
+    this.arregloDatos = []
+    const url = 'https://localhost:44308/api/Compras/Obtener';
+
+    this.http.get<ComprasResponse>(url).subscribe(
+      (response) => {
+        if (Array.isArray(response.data)) {
+          this.arregloDatos = response.data;
+        }
+      },
+      (error) => {
+        console.error('Error al obtener datos:', error);
+      }
+    );
+  }
+
+  addCompra() {
+    this.postCompras()
+  }
+  postCompras() {
+
+    let url = ''
+
+    url = 'https://localhost:44308/api/Compras/Crear'
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    // Realiza la solicitud POST
+    this.http.post(url, this.modeloCompras, { headers }).subscribe(
+      (response) => {
+        alert('Registro Exitoso');
+
+        this.obtenerDatos()
+        this.limpiarModelo()
+
+      },
+      (error) => {
+        // Maneja los errores de la solicitud
+        console.log(error)
+        alert('Error: ' + error);
+      }
+    );
+  }
+  limpiarModelo(){
+    this.modeloCompras.idCompra = 0
+    this.modeloCompras.idProveedor = null
+    this.modeloCompras.idProducto = null
+    this.modeloCompras.cantidad = null
+    this.modeloCompras.total = 0
+    this.modeloCompras.precio = null
+    this.modeloCompras.fecha = ""
+  }
+}
+
+class Compras{
+  idCompra: number = 0;
+  idProveedor: number = null;
+  idProducto: number = null;
+  precio: number = null;
+  fecha : string = "";
+  cantidad: number = null;
+  total: number = 0
+}
+
+class ComprasResponse{
+  code: string = "";
+  message: string = ""
+  data: string ="";
+}

@@ -55,10 +55,17 @@ public class VistaComprasController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest(new {message = ex.Message});
-            throw;
         }
 
-        return Ok(vista);
+        var response = new 
+        {
+            Code = 200,
+            Message = "Reporte compras",
+            Data = vista
+        };
+                
+                
+        return Ok(response);
     }
     
     [HttpPost("Filtrar")]

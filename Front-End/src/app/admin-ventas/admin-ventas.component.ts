@@ -45,7 +45,6 @@ export class AdminVentasComponent {
     }else{
       this.editarVenta()
     }
-
   }
 
   editarVenta() {

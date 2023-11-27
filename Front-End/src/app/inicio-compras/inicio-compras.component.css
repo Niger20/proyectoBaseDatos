@@ -1,0 +1,134 @@
+.main{
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+}
+.sidebar{
+
+  position: relative;
+  width: 32px;
+  height: 97vh;
+  border: darkred solid 1px;
+  overflow-x: clip;
+  transition: all .7s;
+}
+
+.sidebar:hover{
+  width: 270px;
+}
+
+.welcome{
+
+  display: flex;
+  align-items: center;
+
+}
+
+.menuButton{
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  overflow: hidden;
+  background-color: transparent;
+  color: #8B0000;
+  border: transparent solid 1px;
+  margin-top: 5px;
+  width: 100%;
+  height: 30px;
+}
+
+.menuButton-Logout{
+  position: absolute;
+  bottom: 0;
+  margin-top: 95px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  overflow: hidden;
+  background-color: transparent;
+  color: #8B0000;
+  border: transparent solid 1px;
+  width: 100%;
+  height: 30px;
+}
+
+.menuButton-Logout:hover{
+  background-color: #8B0000;
+  color: white;
+  cursor: pointer;
+}
+
+
+.menuButton:hover{
+  background-color: #8B0000;
+  color: white;
+  cursor: pointer;
+}
+
+.menuButtonIcon{
+  width: 20px;
+  height: 20px;
+}
+
+.textButton{
+  flex: 1;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-self: center;
+  text-align: center;
+  font-size: 12px;
+}
+
+.container{
+  width: 100%;
+  height: 97vh;
+  border: #8B0000 solid 1px;
+  transition: all .7s;
+  overflow: auto;
+}
+
+.container-reportes{
+  width: calc(100% - 10px) ;
+  margin-top: 5px;
+  margin-left: 5px;
+  height: 97vh;
+  border: #8B0000 solid 1px;
+  transition: all .7s;
+  overflow: auto;
+}
+
+.bienvenida{
+  color: #8B0000;
+  flex: 1;
+  margin-left: 35px;
+  margin-right: 35px;
+  align-self: center;
+  text-align: center;
+  font-size: 15px;
+}
+
+.header{
+  display: flex;
+  width: 100%;
+  height: 50px;
+}
+
+.headerButton{
+  color: #8B0000;
+  background-color: transparent;
+  border: #8B0000 1px solid;
+  border-top: transparent 1px solid;
+  margin-left: 5px;
+  width: 190px;
+}
+
+.headerButton:hover{
+  background-color: #8B0000;
+  color: white;
+}
+
+.headerText{
+  color: #8B0000;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+

@@ -221,7 +221,7 @@ export class AdminEntradasComponent {
 
 }
 
-export class Entradas{
+class Entradas{
 
   idEntrada: number = 0;
   idProducto: number = null;

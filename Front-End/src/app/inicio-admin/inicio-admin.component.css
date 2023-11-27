@@ -86,6 +86,16 @@
   overflow: auto;
 }
 
+.container-reportes{
+  width: calc(100% - 10px) ;
+  margin-top: 5px;
+  margin-left: 5px;
+  height: 97vh;
+  border: #8B0000 solid 1px;
+  transition: all .7s;
+  overflow: auto;
+}
+
 .bienvenida{
   color: #8B0000;
   flex: 1;
@@ -96,5 +106,24 @@
   font-size: 15px;
 }
 
+.header{
+  display: flex;
+  width: 100%;
+  height: 50px;
+}
+
+.headerButton{
+  color: #8B0000;
+  background-color: transparent;
+  border: #8B0000 1px solid;
+  border-top: transparent 1px solid;
+  margin-left: 5px;
+  width: 190px;
+}
+
+.headerButton:hover{
+  background-color: #8B0000;
+  color: white;
+}
 
 

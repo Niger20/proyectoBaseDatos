@@ -6,11 +6,14 @@ import {InicioAdminComponent} from "./inicio-admin/inicio-admin.component";
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {SharedServiceService} from "./services/shared-service.service";
+import {InicioBodegueroComponent} from "./inicio-bodeguero/inicio-bodeguero.component";
+import {InicioComprasComponent} from "./inicio-compras/inicio-compras.component";
+import {InicioVendedorComponent} from "./inicio-vendedor/inicio-vendedor.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent, HttpClientModule, InicioAdminComponent],
+  imports: [CommonModule, RouterOutlet, LoginComponent, HttpClientModule, InicioAdminComponent, InicioBodegueroComponent, InicioComprasComponent, InicioVendedorComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

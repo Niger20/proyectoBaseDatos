@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="tabla">
+
+  <table id="tablaDatos">
+    <tr class="columnTable">
+      <th>Codigo de Cuarto</th>
+      <th>Codigo de Producto</th>
+      <th>Descripcion del Producto</th>
+      <th>Cantidad En el Cuarto</th>
+    </tr>
+    <tr *ngFor="let item of arregloDatos">
+      <td>{{ item.idCuarto }}</td>
+      <td>{{ item.idProducto }}</td>
+      <td>{{ item.descripcion}}</td>
+      <td>{{ item.cantidadTotal }}</td>
+
+    </tr>
+  </table>
+
+
+</div>
+
+<button class="btnPrint" (click)="createPDF()" ><img class="buttonIcon" src="assets/imprimir%20(1).png" alt=""></button>
+
+</body>
+</html>

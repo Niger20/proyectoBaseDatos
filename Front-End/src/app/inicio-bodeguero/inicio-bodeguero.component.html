@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+  <title></title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="sidebar">
+
+    <div class="welcome">
+      <h2 class="bienvenida">BIENVENIDO BODEGUERO</h2>
+    </div>
+
+
+    <button class="menuButton" (click)="cambiarPestana('inicio')"><img src="assets/casa-en-blanco.png" alt="" class="menuButtonIcon"> <p class="textButton">INICIO</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('salidas')"><img src="assets/persona-munequita.png" alt="" class="menuButtonIcon"> <p class="textButton">SALIDAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('entradas')"><img src="assets/carga-de-camiones.png" alt="" class="menuButtonIcon"> <p class="textButton">ENTRADAS</p> </button>
+    <button class="menuButton-Logout" (click)="cerrarSesion()" ><img src="assets/salida%20(2).png" alt="" class="menuButtonIcon"> <p class="textButton">LOGOUT</p> </button>
+
+  </div>
+
+  <div class="container">
+    <div *ngIf="pestanaActiva === 'inicio' ">
+      <div class="header">
+        <h2 class="headerText">REPORTE DEL ESTADO ACTUAL DE LOS CUARTOS</h2>
+      </div>
+      <app-reporte-cuartos></app-reporte-cuartos>
+    </div>
+    <div *ngIf=" pestanaActiva === 'entradas' "> <app-bodegueros-entradas></app-bodegueros-entradas></div>
+    <div *ngIf=" pestanaActiva === 'salidas' "> <app-bodegueros-salidas></app-bodegueros-salidas></div>
+
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+  <title></title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="sidebar">
+
+    <div class="welcome">
+      <h2 class="bienvenida">BIENVENIDO VENDEDOR</h2>
+    </div>
+
+
+    <button class="menuButton" (click)="cambiarPestana('inicio')"><img src="assets/casa-en-blanco.png" alt="" class="menuButtonIcon"> <p class="textButton">INICIO</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('ventas')"><img src="assets/dolar-de-caja.png" alt="" class="menuButtonIcon"> <p class="textButton">VENTAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('clientes')"><img src="assets/gente-de-la-foto.png" alt="" class="menuButtonIcon"> <p class="textButton">CLIENTES</p> </button>
+    <button class="menuButton-Logout" (click)="cerrarSesion()"><img src="assets/salida%20(2).png" alt="" class="menuButtonIcon"> <p class="textButton">LOGOUT</p> </button>
+
+  </div>
+
+  <div class="container">
+
+    <div *ngIf="pestanaActiva === 'inicio'">
+      <div class="header">
+        <h2 class="headerText">REPORTE DE LAS COMPRAS REALIZADAS</h2>
+      </div>
+      <app-reporte-ventas></app-reporte-ventas>
+    </div>
+    <div *ngIf="pestanaActiva === 'ventas'"> <app-vendedor-ventas></app-vendedor-ventas></div>
+    <div *ngIf="pestanaActiva === 'clientes'"> <app-vendedor-clientes></app-vendedor-clientes></div>
+
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

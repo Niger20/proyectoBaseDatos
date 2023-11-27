@@ -57,7 +57,15 @@ public class VistaVentasController : ControllerBase
             throw;
         }
 
-        return Ok(vista);
+        var response = new 
+        {
+            Code = 200,
+            Message = "Reporte Ventas",
+            Data = vista
+        };
+                
+                
+        return Ok(response);
     }
     
     [HttpPost("Filtrar")]

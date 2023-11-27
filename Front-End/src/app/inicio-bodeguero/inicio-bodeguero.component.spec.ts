@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminReportesComponent } from './admin-reportes.component';
+import { InicioBodegueroComponent } from './inicio-bodeguero.component';
 
-describe('AdminReportesComponent', () => {
-  let component: AdminReportesComponent;
-  let fixture: ComponentFixture<AdminReportesComponent>;
+describe('InicioBodegueroComponent', () => {
+  let component: InicioBodegueroComponent;
+  let fixture: ComponentFixture<InicioBodegueroComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminReportesComponent]
+      imports: [InicioBodegueroComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AdminReportesComponent);
+    fixture = TestBed.createComponent(InicioBodegueroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

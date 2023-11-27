@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="separator">
+  </div>
+
+  <div class="container">
+
+    <div class="formulario">
+
+      <div class="header">
+
+        <h2>Ventas</h2>
+
+      </div>
+
+      <div class="form">
+        <input class="inputNormal" type="number" placeholder="Codigo Cliente" [(ngModel)]="modeloVentas.idCliente">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloVentas.idProducto">
+        <input class="inputNormal" type="number" placeholder="Precio" [(ngModel)]="modeloVentas.precio">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloVentas.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloVentas.cantidad">
+        <input class="inputNormal" type="number" placeholder="Salida Asociada" [(ngModel)]="modeloSalidaExterna.idSalida">
+
+
+        <div class="buttonContainer">
+          <button class="buttonForm confirmar" (click)="addVenta()">CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="tabla">
+
+      <table>
+        <tr class="columnTable">
+          <th>Codigo Venta</th>
+          <th>Codigo Cliente</th>
+          <th>Codigo Producto</th>
+          <th>Precio</th>
+          <th>Fecha</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idVenta }}</td>
+          <td>{{ item.idCliente }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.precio }}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.total }}</td>
+
+        </tr>
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</body>
+</html>

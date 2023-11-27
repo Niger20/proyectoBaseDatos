@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+  <title></title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="sidebar">
+
+    <div class="welcome">
+      <h2 class="bienvenida">BIENVENIDO COMPRADOR</h2>
+    </div>
+
+
+    <button class="menuButton" (click)="cambiarPestana('inicio')"><img src="assets/casa-en-blanco.png" alt="" class="menuButtonIcon"> <p class="textButton">INICIO</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('compras')"><img src="assets/comprobacion-del-carrito-de-la-compra.png" alt="" class="menuButtonIcon"> <p class="textButton">COMPRAS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('productos')"><img src="assets/caja-abierta.png" alt="" class="menuButtonIcon"> <p class="textButton">PRODUCTOS</p> </button>
+    <button class="menuButton" (click)="cambiarPestana('proveedores')"><img src="assets/signo-de-persona.png" alt="" class="menuButtonIcon"> <p class="textButton">PROVEEDORES</p> </button>
+    <button class="menuButton-Logout" (click)="cerrarSesion()" ><img src="assets/salida%20(2).png" alt="" class="menuButtonIcon"> <p class="textButton">LOGOUT</p> </button>
+
+  </div>
+
+  <div class="container">
+
+    <div *ngIf="pestanaActiva === 'inicio'">
+      <div class="header">
+        <h2 class="headerText">REPORTE DE LAS COMPRAS REALIZADAS</h2>
+      </div>
+      <app-reporte-compras></app-reporte-compras>
+    </div>
+    <div *ngIf="pestanaActiva === 'compras'"> <app-compras-compras></app-compras-compras></div>
+    <div *ngIf="pestanaActiva === 'productos'"> <app-compras-productos></app-compras-productos></div>
+    <div *ngIf="pestanaActiva === 'proveedores'"> <app-compras-proveedores></app-compras-proveedores></div>
+
+
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

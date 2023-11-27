@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="separator">
+  </div>
+
+  <div class="container">
+
+    <div class="formulario">
+
+      <div class="header">
+
+        <h2>Productos</h2>
+
+      </div>
+
+      <div class="form">
+        <input class="inputNormal" type="text" placeholder="Descripcion" [(ngModel)]="modeloProductos.descripcion">
+        <input class="inputNormal" type="number" placeholder="Peso" [(ngModel)]="modeloProductos.peso">
+
+
+        <div class="buttonContainer">
+          <button class="buttonForm confirmar" (click)="addProducto()" >CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()">LIMPIAR</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="tabla">
+
+      <table>
+        <tr class="columnTable">
+          <th>Codigo Producto</th>
+          <th>Cantidad Disponible</th>
+          <th>Descripcion</th>
+          <th>Peso</th>
+        </tr>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.descripcion }}</td>
+          <td>{{ item.peso }}</td>
+
+        </tr>
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</body>
+</html>

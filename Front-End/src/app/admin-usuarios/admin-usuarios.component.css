@@ -1,0 +1,134 @@
+.separator{
+  height: 5vh;
+}
+
+.container{
+  display: flex;
+}
+
+
+.formulario{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.form{
+  border: #8B0000 1px solid;
+  border-top: transparent 1px solid;
+  margin-right: 3px;
+}
+
+.inputNormal{
+  width: 90%;
+  height: 30px;
+  margin-top: 20px;
+  border: #8B0000 1px solid;
+  border-radius: 5px;
+}
+
+
+.header{
+  border: #8B0000 1px solid;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3px;
+}
+.headerButton{
+  display: flex;
+  float: left;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 30px;
+  background-color: transparent;
+  border: #8B0000 solid 1px;
+  border-radius: 10px;
+  margin-left: 2px;
+}
+
+.headerButton:hover{
+  background-color: #ffcfce;
+}
+.buttonIcon{
+  height: 20px;
+  width: 20px;
+}
+
+.tabla{
+  flex: 3;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+
+tr {
+  border: 1px solid black;
+}
+
+th{
+  color: #8B0000;
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+td{
+  font-size: 14px;
+}
+
+.comboBox{
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 30px;
+  border: #8B0000 1px solid;
+  border-radius: 5px;
+}
+
+.buttonContainer{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.buttonForm{
+  width: 100px;
+  height: 30px;
+  margin-left: 2px;
+  background-color: transparent;
+}
+
+.buttonForm.limpiar{
+  border: darkred 1px solid;
+}
+
+.buttonForm.limpiar:hover{
+  background-color: #ffcfce;
+}
+
+.buttonForm.confirmar{
+  border: darkgreen 1px solid;
+}
+
+.buttonForm.confirmar:hover{
+  background-color: #d7ffd5;
+}
+
+.cellAcciones{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="separator">
+  </div>
+
+  <div class="container">
+
+    <div class="formulario">
+
+      <div class="header">
+
+        <h2>Compras</h2>
+
+      </div>
+
+      <div class="form">
+        <input class="inputNormal" type="number" placeholder="Codigo Proveedor" [(ngModel)]="modeloCompras.idProveedor">
+        <input class="inputNormal" type="number" placeholder="Codigo Producto" [(ngModel)]="modeloCompras.idProducto">
+        <input class="inputNormal" type="number" placeholder="Precio" [(ngModel)]="modeloCompras.precio">
+        <input class="inputNormal" type="date" placeholder="Fecha" [(ngModel)]="modeloCompras.fecha">
+        <input class="inputNormal" type="number" placeholder="Cantidad" [(ngModel)]="modeloCompras.cantidad">
+
+
+        <div class="buttonContainer">
+          <button class="buttonForm confirmar" (click)="addCompra()" >CONFIRMAR</button>
+          <button class="buttonForm limpiar" id="limpiar" (click)="limpiarModelo()" >LIMPIAR</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="tabla">
+
+      <table>
+        <tr class="columnTable">
+          <th>Codigo Compra</th>
+          <th>Codigo Proveedor</th>
+          <th>Codigo Producto</th>
+          <th>Precio</th>
+          <th>Fecha</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.idCompra }}</td>
+          <td>{{ item.idProveedor }}</td>
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.precio }}</td>
+          <td>{{ formatearFecha(item.fecha) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.total }}</td>
+
+        </tr>
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</body>
+</html>

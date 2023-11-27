@@ -39,6 +39,65 @@ public class UsuariosController : ControllerBase
         }
     }
     
+    
+    //METODO PARA ELIMINAR UN usuario
+
+    [HttpDelete("Eliminar")]
+
+    public IActionResult Delete(string username)
+    {
+        try
+        {
+            var usuarios = _context.Usuarios.Find(username);
+
+            if (usuarios == null)
+            {
+                return NotFound(new { message = "nombre de usuario no valido" });
+            }
+
+            _context.Usuarios.Remove(usuarios);
+            _context.SaveChanges();
+
+            return Ok(new { message = "Cuarto eliminado correctamente" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });          
+        }
+
+    }
+    
+    //  METODO PARA LEER TODOS LOS usuarios DE LA BASE DE DATOS
+    [HttpGet("Obtener")]
+    public IActionResult Get()
+    {
+        try
+        { 
+            var  usuarios = _context.Usuarios.ToList();
+
+            if (usuarios.Count == 0)
+            {
+                return NotFound(new { message = "No hay usuarios registrados" });
+            }
+
+
+            var response = new 
+            {
+                Code = 200,
+                Message = "Lista Usuarios",
+                Data = usuarios
+            };
+                
+                
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+    
     //METODO PARA LOGGEAR Usuarios
 
     [HttpPost( "Login")]

@@ -29,7 +29,6 @@
     <button class="menuButton" (click)="cambiarPestana('empleados')"><img src="assets/id-insignia.png" alt="" class="menuButtonIcon"> <p class="textButton">EMPLEADOS</p> </button>
     <button class="menuButton" (click)="cambiarPestana('proveedores')"><img src="assets/signo-de-persona.png" alt="" class="menuButtonIcon"> <p class="textButton">PROVEEDORES</p> </button>
     <button class="menuButton" (click)="cambiarPestana('usuarios')"><img src="assets/agregar-usuario%20(3).png" alt="" class="menuButtonIcon"> <p class="textButton">USUARIOS</p> </button>
-    <button class="menuButton" (click)="cambiarPestana('reportes')"><img src="assets/archivos-medicos.png" alt="" class="menuButtonIcon"> <p class="textButton">REPORTES</p> </button>
     <button class="menuButton-Logout" (click)="cerrarSesion()"><img src="assets/salida%20(2).png" alt="" class="menuButtonIcon"> <p class="textButton">LOGOUT</p> </button>
 
   </div>
@@ -40,19 +39,28 @@
     <div *ngIf="pestanaActiva === 'empleados'"><app-admin-empleados></app-admin-empleados></div>
     <div *ngIf="pestanaActiva === 'entradas'"><app-admin-entradas></app-admin-entradas></div>
     <div *ngIf="pestanaActiva === 'proveedores'">    <app-admin-proveedores></app-admin-proveedores></div>
-    <div *ngIf="pestanaActiva === 'reportes'"><app-admin-reportes></app-admin-reportes></div>
     <div *ngIf="pestanaActiva === 'salidas'"><app-admin-salidas></app-admin-salidas></div>
     <div *ngIf="pestanaActiva === 'usuarios'"><app-admin-usuarios></app-admin-usuarios></div>
     <div *ngIf="pestanaActiva === 'ventas'"><app-admin-ventas></app-admin-ventas></div>
     <div *ngIf="pestanaActiva === 'productos'"><app-admin-productos></app-admin-productos></div>
     <div *ngIf="pestanaActiva === 'inicio'">
-      <h2>REPORTE CUARTOS</h2>
+      <div class="header">
+        <button class="headerButton" (click)="cambiarReporte('ventas')">REPORTE VENTAS</button>
+        <button class="headerButton" (click)="cambiarReporte('compras')">REPORTE COMPRAS</button>
+        <button class="headerButton" (click)="cambiarReporte('cuartos')">REPORTE CUARTOS</button>
+      </div>
+      <div class="container-reportes">
+        <div *ngIf="reporteActivo === 'ventas'">
+          <app-reporte-ventas></app-reporte-ventas>
+        </div>
+        <div *ngIf="reporteActivo === 'compras'">
+          <app-reporte-compras></app-reporte-compras>
+        </div>
+        <div *ngIf="reporteActivo === 'cuartos'">
+          <app-reporte-cuartos></app-reporte-cuartos>
+        </div>
+      </div>
     </div>
-
-
-
-
-
   </div>
 
 </div>

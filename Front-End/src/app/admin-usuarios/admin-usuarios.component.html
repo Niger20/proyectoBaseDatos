@@ -1,1 +1,80 @@
-<p>admin-usuarios works!</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="separator">
+  </div>
+
+  <div class="container">
+
+    <div class="formulario">
+
+      <div class="header">
+
+        <h2>Usuarios</h2>
+
+      </div>
+
+      <div class="form">
+        <input class="inputNormal" type="text" placeholder="Nombre de Usuario" [(ngModel)]="modeloUsuarios.username">
+        <input class="inputNormal" type="password" placeholder="Contrasena" [(ngModel)]="modeloUsuarios.password">
+
+        <label for="rol" > Rol: </label>
+
+        <select name="rol" id="rol" class="comboBox" [(ngModel)]="modeloUsuarios.rol">
+          <option value="Admin">Admin</option>
+          <option value="Bodeguero">Bodeguero</option>
+          <option value="Compras">Compras</option>
+          <option value="Vendedor">Vendedor</option>
+        </select>
+
+        <div class="buttonContainer">
+          <button class="buttonForm confirmar" (click)="postUsuarios()">REGISTRAR</button>
+          <button class="buttonForm limpiar" (click)="limpiarModelo()" id="limpiar">LIMPIAR</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="tabla">
+
+      <table>
+        <tr class="columnTable">
+          <th>Nombre de Usuario</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngFor="let item of arregloDatos">
+          <td>{{ item.username }}</td>
+          <td>{{ item.rol }}</td>
+          <td class="cellAcciones">
+            <button class="headerButton" (click)="eliminarUsuario(item.username)"><img src="assets/basura%20(2).png" alt="" class="buttonIcon" ></button>
+          </td>
+
+        </tr>
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</body>
+</html>
