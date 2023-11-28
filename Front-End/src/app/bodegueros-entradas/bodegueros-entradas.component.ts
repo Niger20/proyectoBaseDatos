@@ -33,7 +33,7 @@ export class BodeguerosEntradasComponent {
 
     let url = ''
 
-    url = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/Crear'
+    url = 'https://localhost:44308/api/Entradas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export class BodeguerosEntradasComponent {
 
   agregarMovimientoInterno(){
 
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/MovimientoInterno/Crear'
+    const url = 'https://localhost:44308/api/MovimientoInterno/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export class BodeguerosEntradasComponent {
 
   agregarEntradaExterna(){
 
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/EntradaExterna/Crear'
+    const url = 'https://localhost:44308/api/EntradaExterna/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export class BodeguerosEntradasComponent {
 
   obtenerDatos() {
     this.arregloDatos = []
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/Obtener';
+    const url = 'https://localhost:44308/api/Entradas/Obtener';
 
     this.http.get<EntradasResponse>(url).subscribe(
       (response) => {

@@ -23,7 +23,7 @@ export class AdminUsuariosComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Usuarios/Obtener';
+    const url = 'https://localhost:44308/api/Usuarios/Obtener';
 
     this.http.get<UsuariosResponse>(url).subscribe(
       (response) => {
@@ -42,35 +42,41 @@ export class AdminUsuariosComponent {
   }
   postUsuarios() {
 
-    let url = ''
+    if(this.modeloUsuarios.rol === ""){
+      alert("FAVOR SELECCIONE UN ROL VALIDO")
+    }else{
 
-    url = 'https://www.alimentoscarnisimasa.somee.com/api/Usuarios/Crear'
+      let url = ''
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+      url = 'https://localhost:44308/api/Usuarios/Crear'
 
-    // Realiza la solicitud POST
-    this.http.post(url, this.modeloUsuarios, { headers }).subscribe(
-      (response) => {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
 
-        alert('Registro Exitoso');
+      // Realiza la solicitud POST
+      this.http.post(url, this.modeloUsuarios, { headers }).subscribe(
+        (response) => {
 
-        this.obtenerDatos()
-        this.limpiarModelo()
+          alert('Registro Exitoso');
 
-      },
-      (error) => {
-        // Maneja los errores de la solicitud
-        console.log(error)
-        alert('Error: ' + error);
-      }
-    );
+          this.obtenerDatos()
+          this.limpiarModelo()
+
+        },
+        (error) => {
+          // Maneja los errores de la solicitud
+          console.log(error)
+          alert('Error: ' + error);
+        }
+      );
+
+    }
   }
 
   eliminarUsuario(username : string){
 
-    const urlDelete = 'https://www.alimentoscarnisimasa.somee.com/api/Usuarios/Eliminar';
+    const urlDelete = 'https://localhost:44308/api/Usuarios/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?username=${username}`).subscribe(
       (response) => {

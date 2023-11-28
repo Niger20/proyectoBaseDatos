@@ -36,7 +36,7 @@ export class AdminEntradasComponent {
 
     let url = ''
 
-    url = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/Crear'
+    url = 'https://localhost:44308/api/Entradas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export class AdminEntradasComponent {
 
   agregarMovimientoInterno(){
 
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/MovimientoInterno/Crear'
+    const url = 'https://localhost:44308/api/MovimientoInterno/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export class AdminEntradasComponent {
 
   agregarEntradaExterna(){
 
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/EntradaExterna/Crear'
+    const url = 'https://localhost:44308/api/EntradaExterna/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ export class AdminEntradasComponent {
 
   eliminarEntrada(id : number){
 
-    const urlDelete = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/Eliminar';
+    const urlDelete = 'https://localhost:44308/api/Entradas/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {
@@ -155,7 +155,7 @@ export class AdminEntradasComponent {
   }
   obtenerDatos() {
     this.arregloDatos = []
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/Obtener';
+    const url = 'https://localhost:44308/api/Entradas/Obtener';
 
     this.http.get<EntradasResponse>(url).subscribe(
       (response) => {
@@ -170,7 +170,7 @@ export class AdminEntradasComponent {
   }
 
   editarSalida() {
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Entradas/EditarEntradas'
+    const url = 'https://localhost:44308/api/Entradas/EditarEntradas'
     this.http.put(url, this.modeloEntradas).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()

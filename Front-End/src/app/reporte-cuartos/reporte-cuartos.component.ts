@@ -29,7 +29,7 @@ export class ReporteCuartosComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/VistaCuartos';
+    const url = 'https://localhost:44308/api/VistaCuartos';
 
     this.http.get<vistaCuartosResponse>(url).subscribe(
       (response) => {

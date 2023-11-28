@@ -25,7 +25,7 @@ export class AdminProveedoresComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Proveedor/Obtener';
+    const url = 'https://localhost:44308/api/Proveedor/Obtener';
 
     this.http.get<ProveedoresResponse>(url).subscribe(
       (response) => {
@@ -48,7 +48,7 @@ export class AdminProveedoresComponent {
   }
 
   editarEmpleado() {
-    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Proveedor/Editar'
+    const url = 'https://localhost:44308/api/Proveedor/Editar'
     this.http.put(url, this.modeloProveedores).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()
@@ -62,7 +62,7 @@ export class AdminProveedoresComponent {
 
     let url = ''
 
-    url = 'https://www.alimentoscarnisimasa.somee.com/api/Proveedor/Crear'
+    url = 'https://localhost:44308/api/Proveedor/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export class AdminProveedoresComponent {
 
   eliminarEmpleado(id : number){
 
-    const urlDelete = 'https://www.alimentoscarnisimasa.somee.com/api/Proveedor/Eliminar';
+    const urlDelete = 'https://localhost:44308/api/Proveedor/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {
@@ -115,7 +115,7 @@ export class AdminProveedoresComponent {
   cargarDatos(item : any){
     this.modeloProveedores = {
 
-      idProveedor : item.idEmpleado,
+      idProveedor : item.idProveedor,
       identidad : item.identidad,
       primerNombre : item.primerNombre,
       segundoNombre : item.segundoNombre,
