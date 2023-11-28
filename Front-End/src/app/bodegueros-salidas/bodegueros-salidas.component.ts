@@ -40,7 +40,7 @@ export class BodeguerosSalidasComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Obtener';
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Salidas/Obtener';
 
     this.http.get<SalidasResponse>(url).subscribe(
       (response) => {
@@ -61,7 +61,7 @@ export class BodeguerosSalidasComponent {
 
     let url = ''
 
-    url = 'http://www.alimentoscarnisimasa.somee.com/api/Salidas/Crear'
+    url = 'https://www.alimentoscarnisimasa.somee.com/api/Salidas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

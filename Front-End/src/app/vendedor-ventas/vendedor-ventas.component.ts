@@ -48,7 +48,7 @@ export class VendedorVentasComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Ventas/Obtener';
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Ventas/Obtener';
 
     this.http.get<VentasResponse>(url).subscribe(
       (response) => {
@@ -65,7 +65,7 @@ export class VendedorVentasComponent {
 
     let url = ''
 
-    url = 'http://www.alimentoscarnisimasa.somee.com/api/Ventas/Crear'
+    url = 'https://www.alimentoscarnisimasa.somee.com/api/Ventas/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export class VendedorVentasComponent {
 
   agregarSalidaExterna(){
 
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/SalidaExterna/Crear'
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/SalidaExterna/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
