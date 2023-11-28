@@ -20,7 +20,7 @@ export class LoginComponent {
 
   loginUsuario() {
 
-    let url = "http://www.alimentoscarnisimasa.somee.com/api/Usuarios/Login"
+    let url = "https://www.alimentoscarnisimasa.somee.com/api/Usuarios/Login"
 
 
     const headers = new HttpHeaders({

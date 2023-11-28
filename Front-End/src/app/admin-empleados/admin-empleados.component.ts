@@ -24,7 +24,7 @@ export class AdminEmpleadosComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Empleados/Obtener';
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Empleados/Obtener';
 
     this.http.get<EmpleadosResponse>(url).subscribe(
       (response) => {
@@ -47,7 +47,7 @@ export class AdminEmpleadosComponent {
   }
 
   editarEmpleado() {
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Empleados/Editar'
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Empleados/Editar'
     this.http.put(url, this.modeloEmpleados).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()
@@ -61,7 +61,7 @@ export class AdminEmpleadosComponent {
 
     let url = ''
 
-    url = 'http://www.alimentoscarnisimasa.somee.com/api/Empleados/Crear'
+    url = 'https://www.alimentoscarnisimasa.somee.com/api/Empleados/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export class AdminEmpleadosComponent {
 
   eliminarEmpleado(id : number){
 
-    const urlDelete = 'http://www.alimentoscarnisimasa.somee.com/api/Empleados/Eliminar';
+    const urlDelete = 'https://www.alimentoscarnisimasa.somee.com/api/Empleados/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {

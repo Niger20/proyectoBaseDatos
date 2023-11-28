@@ -26,7 +26,7 @@ export class AdminClientesComponent {
   obtenerDatos() {
 
     this.arregloDatos = []
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Obtener';
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Clientes/Obtener';
 
     this.http.get<ClientesResponse>(url).subscribe(
       (response) => {
@@ -49,7 +49,7 @@ export class AdminClientesComponent {
   }
 
   editarProductos() {
-    const url = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Editar'
+    const url = 'https://www.alimentoscarnisimasa.somee.com/api/Clientes/Editar'
     this.http.put(url, this.modeloClientes).subscribe(response => {
       alert('Registro Exitoso');
       this.obtenerDatos()
@@ -63,7 +63,7 @@ export class AdminClientesComponent {
 
     let url = ''
 
-    url = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Crear'
+    url = 'https://www.alimentoscarnisimasa.somee.com/api/Clientes/Crear'
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export class AdminClientesComponent {
 
   eliminarCliente(id : number){
 
-    const urlDelete = 'http://www.alimentoscarnisimasa.somee.com/api/Clientes/Eliminar';
+    const urlDelete = 'https://www.alimentoscarnisimasa.somee.com/api/Clientes/Eliminar';
     // Realiza la solicitud POST
     this.http.delete(`${urlDelete}?id=${id}`).subscribe(
       (response) => {
